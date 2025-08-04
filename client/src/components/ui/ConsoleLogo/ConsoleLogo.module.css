@@ -1,0 +1,64 @@
+.consoleLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: auto;
+}
+
+.logoImage {
+  height: 20px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.platformText {
+  color: inherit;
+  font-size: inherit;
+  white-space: nowrap;
+}
+
+/* Tailles différentes */
+.small .logoImage {
+  height: 30px;
+}
+
+.medium .logoImage {
+  height: 20px;
+}
+
+.large .logoImage {
+  height: 24px;
+}
+
+.xlarge .logoImage {
+  height: 32px;
+}
+
+/* Style pour les menus déroulants */
+.inSelect {
+  font-size: 0.9rem;
+}
+
+.inSelect .logoImage {
+  height: 14px;
+  margin-right: 0.3rem;
+}
+
+/* Style pour l'affichage dans les métadonnées */
+.inMeta {
+  color: white;
+}
+
+.inMeta .platformText {
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .consoleLogo {
+    display: flex;
+    /* flex-direction: row; */
+    margin-left: 20px;
+  }
+}

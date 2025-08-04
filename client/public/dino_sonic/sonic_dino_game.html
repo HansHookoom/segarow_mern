@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonic Dino Game - Responsive</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            background: #f7f7f7;
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            user-select: none;
+            box-sizing: border-box;
+        }
+        
+        #gameContainer {
+            position: relative;
+            width: min(1200px, 95vw);
+            aspect-ratio: 4/1;
+            background: #f7f7f7;
+            overflow: hidden;
+            border: 2px solid #d3d3d3;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+        
+        canvas {
+            display: block;
+            background: #f7f7f7;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: clamp(14px, 3vw, 18px);
+            color: black;
+            font-weight: bold;
+        }
+        
+        .restart-btn {
+            width: clamp(36px, 8vw, 48px);
+            height: clamp(32px, 7vw, 42px);
+            background: black;
+            border: none;
+            cursor: pointer;
+            margin: 15px auto;
+            border-radius: 6px;
+            font-size: clamp(16px, 4vw, 20px);
+            color: white;
+            transition: all 0.2s ease;
+        }
+        
+        .restart-btn:hover {
+            background: #333;
+            transform: scale(1.05);
+        }
+        
+        .instructions {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(12px, 2.5vw, 14px);
+            color: #000000;
+            text-align: center;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Contrôles tactiles pour mobile - Section séparée */
+        .mobile-controls {
+            display: flex;
+            width: min(400px, 95vw);
+            justify-content: center;
+            gap: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            margin-top: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .touch-btn {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(145deg, #4a90e2, #357abd);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            touch-action: manipulation;
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .touch-btn:active {
+            background: linear-gradient(145deg, #357abd, #2c5f99);
+            transform: scale(0.95);
+            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.5);
+        }
+
+        .touch-btn-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            
+            .mobile-controls {
+                display: flex !important;
+            }
+            
+            .instructions {
+                font-size: 10px;
+            }
+        } */
+
+        @media (min-width: 768px) {
+            .mobile-controls {
+                display: none !important;
+            }
+        }
+
+        @media (max-height: 500px) {
+            body {
+                /* align-items: flex-start; */
+                padding-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div id="gameOver" class="game-over" style="display: none;">
+            <div>G A M E  O V E R</div>
+            <button id="restartBtn" class="restart-btn" onclick="restartGame()">↻</button>
+        </div>
+        <div class="instructions">
+            Appuyez sur ESPACE ou ↑ pour commencer
+        </div>
+    </div>
+
+    <!-- Contrôles tactiles mobiles séparés -->
+    <div class="mobile-controls">
+        <div class="control-group">
+            <button class="touch-btn" id="jumpBtn">↑</button>
+            <div class="touch-btn-label">SAUTER</div>
+        </div>
+        <div class="control-group">
+            <button class="touch-btn" id="duckBtn">↓</button>
+            <div class="touch-btn-label">SE BAISSER</div>
+        </div>
+    </div>
+
+    <script>
+        // Variables pour la responsivité
+        let scale = 1;
+        let baseWidth = 1200;
+        let baseHeight = 300;
+
+        // Configuration du jeu - Adaptative
+        const CONFIG = {
+            get GRAVITY() { return 0.6 * scale; },
+            get JUMP_SPEED() { return -15 * scale; },
+            get GROUND_SPEED() { return 6 * scale; },
+            SPEED_INCREMENT: 0.002,
+            get MAX_SPEED() { return 16 * scale; },
+            ACCELERATION_THRESHOLD: 150,
+            BONUS_ACCELERATION: 0.3,
+            get DINO_WIDTH() { return 88 * scale; },
+            get DINO_HEIGHT() { return 94 * scale; },
+            get DINO_GROUND_Y() { return 186 * scale; },
+            CACTUS_SPAWN_RATE: 0.008,
+            PTERODACTYL_SPAWN_RATE: 0.0008,
+            get MIN_OBSTACLE_DISTANCE() { return 180 * scale; },
+            CLOUD_SPAWN_RATE: 0.003,
+            STAR_SPAWN_RATE: 0.0005
+        };
+
+        // Variables globales
+        let canvas, ctx;
+        let gameRunning = false;
+        let gameStarted = false;
+        let score = 0;
+        let highScore = parseInt(localStorage.getItem('dinoHighScore')) || 0;
+        let gameSpeed = CONFIG.GROUND_SPEED;
+        let frame = 0;
+
+        // Objets du jeu
+        let dino, ground, robotnik = null, obstacles = [], stars = [];
+        
+        // Sprites Sonic
+        let sonicSprites = {
+            idle: null,
+            run1: null,
+            run2: null,
+            jump: null,
+            duck: null,
+            dead: null,
+            spike: null,
+            enemy: null,
+            robotnik: null
+        };
+
+        // Sprite de fond
+        let backgroundSprite = null;
+        let backgroundX = 0;
+
+        let spritesLoaded = 0;
+        let totalSprites = 9;
+
+        // Fonction pour calculer l'échelle responsive
+        function calculateScale() {
+            const container = document.getElementById('gameContainer');
+            const containerRect = container.getBoundingClientRect();
+            
+            const scaleX = containerRect.width / baseWidth;
+            const scaleY = containerRect.height / baseHeight;
+            scale = Math.min(scaleX, scaleY);
+            
+            // Mise à jour de la taille du canvas
+            canvas.width = containerRect.width;
+            canvas.height = containerRect.height;
+            
+            // Réinitialiser la vitesse avec la nouvelle échelle
+            gameSpeed = CONFIG.GROUND_SPEED;
+        }
+
+        // Gestion du redimensionnement
+        function handleResize() {
+            calculateScale();
+            if (dino) {
+                dino.updateScale();
+            }
+            if (ground) {
+                ground.updateScale();
+            }
+            if (robotnik) {
+                robotnik.updateScale && robotnik.updateScale();
+            }
+            obstacles.forEach(obstacle => obstacle.updateScale && obstacle.updateScale());
+            stars.forEach(star => star.updateScale && star.updateScale());
+            
+            if (!gameRunning) {
+                render();
+            }
+        }
+
+        // Fonction pour mettre à jour le statut des sprites
+        function updateSpriteStatus() {
+            if (!gameRunning && !gameStarted) {
+                render();
+            }
+        }
+
+        // Chargement des sprites Sonic et du fond
+        function loadSonicSprites() {
+            loadBackgroundSprite();
+            
+            const spriteFiles = {
+                idle: ['start.png', 'idle.png', 'sonic_idle.png'],
+                run1: ['run_1.png', 'run1.png', 'sonic_run1.png'],
+                run2: ['run_2.png', 'run2.png', 'sonic_run2.png'],
+                jump: ['jump.png', 'sonic_jump.png'],
+                duck: ['crouch.png', 'duck.png', 'sonic_crouch.png'],
+                dead: ['game_over.png', 'dead.png', 'sonic_dead.png'],
+                spike: ['spike.png'],
+                enemy: ['enemy.png'],
+                robotnik: ['robotnik.png']
+            };
+
+            Object.keys(spriteFiles).forEach(spriteType => {
+                const filenames = spriteFiles[spriteType];
+                let fileIndex = 0;
+
+                function tryLoadFile() {
+                    if (fileIndex >= filenames.length) {
+                        return;
+                    }
+
+                    const filename = filenames[fileIndex];
+                    const img = new Image();
+                    
+                    img.onload = function() {
+                        sonicSprites[spriteType] = img;
+                        spritesLoaded++;
+                        updateSpriteStatus();
+                        
+                        if (spriteType === 'idle' && !gameStarted) {
+                            render();
+                        }
+                    };
+                    
+                    img.onerror = function() {
+                        fileIndex++;
+                        setTimeout(tryLoadFile, 10);
+                    };
+                    
+                    img.src = filename + '?t=' + Date.now();
+                }
+
+                tryLoadFile();
+            });
+        }
+
+        // Chargement du sprite de fond
+        function loadBackgroundSprite() {
+            const backgroundFiles = ['background.png', 'fond.png', 'sonic_background.png', 'bg.png'];
+            let fileIndex = 0;
+
+            function tryLoadBackground() {
+                if (fileIndex >= backgroundFiles.length) {
+                    return;
+                }
+
+                const filename = backgroundFiles[fileIndex];
+                const img = new Image();
+                
+                img.onload = function() {
+                    backgroundSprite = img;
+                    if (!gameRunning && !gameStarted) {
+                        render();
+                    }
+                };
+                
+                img.onerror = function() {
+                    fileIndex++;
+                    setTimeout(tryLoadBackground, 10);
+                };
+                
+                img.src = filename + '?t=' + Date.now();
+            }
+
+            tryLoadBackground();
+        }
+
+        // Classe Sonic (Dino) - Responsive
+        class Dino {
+            constructor() {
+                this.updateScale();
+                this.dy = 0;
+                this.grounded = true;
+                this.ducking = false;
+                this.frame = 0;
+                this.animationSpeed = 6;
+                this.dead = false;
+            }
+
+            updateScale() {
+                this.x = 50 * scale;
+                this.y = CONFIG.DINO_GROUND_Y;
+                this.width = CONFIG.DINO_WIDTH;
+                this.height = CONFIG.DINO_HEIGHT;
+            }
+
+            update() {
+                // Gestion de la taille selon l'état
+                if (this.ducking && this.grounded) {
+                    this.height = 52 * scale;
+                    this.y = CONFIG.DINO_GROUND_Y + 42 * scale;
+                } else if (this.ducking && !this.grounded) {
+                    this.height = 52 * scale;
+                } else {
+                    this.height = CONFIG.DINO_HEIGHT;
+                    if (this.grounded) {
+                        this.y = CONFIG.DINO_GROUND_Y;
+                    }
+                }
+
+                // Physique du saut
+                if (!this.grounded) {
+                    this.dy += CONFIG.GRAVITY;
+                    
+                    if (this.ducking) {
+                        this.dy += CONFIG.GRAVITY * 2;
+                    }
+                    
+                    this.y += this.dy;
+                    
+                    if (this.y >= CONFIG.DINO_GROUND_Y) {
+                        this.y = CONFIG.DINO_GROUND_Y;
+                        this.grounded = true;
+                        this.dy = 0;
+                    }
+                }
+
+                // Animation adaptée à la vitesse du jeu
+                if (gameRunning && !this.dead) {
+                    const animationMultiplier = 1 + (gameSpeed - CONFIG.GROUND_SPEED) * 0.1;
+                    this.frame += (gameSpeed / this.animationSpeed) * animationMultiplier;
+                }
+            }
+
+            jump() {
+                if (this.grounded && !this.ducking && !this.dead) {
+                    this.dy = CONFIG.JUMP_SPEED;
+                    this.grounded = false;
+                }
+            }
+
+            duck(isDucking) {
+                if (!this.dead) {
+                    this.ducking = isDucking;
+                }
+            }
+
+            die() {
+                this.dead = true;
+                this.ducking = false; // Arrêter de se baisser quand on meurt
+                // Remettre la taille normale pour l'affichage de mort
+                this.height = CONFIG.DINO_HEIGHT;
+                this.y = CONFIG.DINO_GROUND_Y;
+            }
+
+            draw() {
+                if (spritesLoaded > 0) {
+                    this.drawSonic();
+                } else {
+                    this.drawOriginal();
+                }
+            }
+
+            drawSonic() {
+                let currentSprite = null;
+                
+                if (this.dead && sonicSprites.dead && sonicSprites.dead.complete) {
+                    currentSprite = sonicSprites.dead;
+                } else if (this.ducking && sonicSprites.duck && sonicSprites.duck.complete) {
+                    currentSprite = sonicSprites.duck;
+                } else if (!this.grounded && sonicSprites.jump && sonicSprites.jump.complete) {
+                    currentSprite = sonicSprites.jump;
+                } else if (gameRunning) {
+                    const runFrame = Math.floor(this.frame / 6) % 2;
+                    if (runFrame === 0 && sonicSprites.run1 && sonicSprites.run1.complete) {
+                        currentSprite = sonicSprites.run1;
+                    } else if (runFrame === 1 && sonicSprites.run2 && sonicSprites.run2.complete) {
+                        currentSprite = sonicSprites.run2;
+                    } else if (sonicSprites.run1 && sonicSprites.run1.complete) {
+                        currentSprite = sonicSprites.run1;
+                    }
+                } else {
+                    if (sonicSprites.idle && sonicSprites.idle.complete) {
+                        currentSprite = sonicSprites.idle;
+                    }
+                }
+
+                if (currentSprite) {
+                    try {
+                        // Multiplier par 2 au lieu de 1.5 pour le sprite duck (Sonic en boule)
+                        const spriteScale = this.ducking ? 
+                            Math.min(this.width / currentSprite.width, this.height / currentSprite.height) * 2.0 :
+                            Math.min(this.width / currentSprite.width, this.height / currentSprite.height) * 1.5;
+                            
+                        const drawWidth = currentSprite.width * spriteScale;
+                        const drawHeight = currentSprite.height * spriteScale;
+                        
+                        const drawX = this.x + (this.width - drawWidth) / 2;
+                        const drawY = this.y + this.height - drawHeight;
+                        
+                        ctx.drawImage(currentSprite, drawX, drawY, drawWidth, drawHeight);
+                        return;
+                    } catch (e) {
+                        // Erreur rendu Sonic
+                    }
+                }
+
+                this.drawOriginal();
+            }
+
+            drawOriginal() {
+                ctx.fillStyle = this.dead ? '#666' : 'black';
+                
+                if (this.dead) {
+                    this.drawDead();
+                } else if (this.ducking) {
+                    this.drawDucking();
+                } else if (gameRunning) {
+                    this.drawRunning();
+                } else {
+                    this.drawStanding();
+                }
+            }
+
+            drawStanding() {
+                ctx.fillRect(this.x + 12*scale, this.y, 12*scale, 30*scale);
+                ctx.fillRect(this.x + 24*scale, this.y - 16*scale, 30*scale, 46*scale);
+                ctx.fillRect(this.x + 54*scale, this.y - 4*scale, 12*scale, 34*scale);
+                ctx.fillRect(this.x + 66*scale, this.y + 6*scale, 10*scale, 24*scale);
+                
+                ctx.fillRect(this.x + 24*scale, this.y + 30*scale, 8*scale, 24*scale);
+                ctx.fillRect(this.x + 40*scale, this.y + 30*scale, 8*scale, 24*scale);
+                
+                ctx.fillRect(this.x, this.y + 16*scale, 12*scale, 8*scale);
+            }
+
+            drawRunning() {
+                const runFrame = Math.floor(this.frame) % 2;
+                
+                ctx.fillRect(this.x + 12*scale, this.y, 12*scale, 30*scale);
+                ctx.fillRect(this.x + 24*scale, this.y - 16*scale, 30*scale, 46*scale);
+                ctx.fillRect(this.x + 54*scale, this.y - 4*scale, 12*scale, 34*scale);
+                ctx.fillRect(this.x + 66*scale, this.y + 6*scale, 10*scale, 24*scale);
+                
+                if (runFrame === 0) {
+                    ctx.fillRect(this.x + 24*scale, this.y + 30*scale, 8*scale, 24*scale);
+                    ctx.fillRect(this.x + 40*scale, this.y + 36*scale, 8*scale, 18*scale);
+                } else {
+                    ctx.fillRect(this.x + 24*scale, this.y + 36*scale, 8*scale, 18*scale);
+                    ctx.fillRect(this.x + 40*scale, this.y + 30*scale, 8*scale, 24*scale);
+                }
+                
+                ctx.fillRect(this.x, this.y + 16*scale, 12*scale, 8*scale);
+            }
+
+            drawDucking() {
+                ctx.fillRect(this.x + 12*scale, this.y + 16*scale, 12*scale, 14*scale);
+                ctx.fillRect(this.x + 24*scale, this.y, 30*scale, 30*scale);
+                ctx.fillRect(this.x + 54*scale, this.y + 12*scale, 30*scale, 18*scale);
+                
+                ctx.fillRect(this.x + 24*scale, this.y + 30*scale, 8*scale, 22*scale);
+                ctx.fillRect(this.x + 40*scale, this.y + 30*scale, 8*scale, 22*scale);
+                
+                ctx.fillRect(this.x, this.y + 20*scale, 12*scale, 8*scale);
+            }
+
+            drawDead() {
+                ctx.fillRect(this.x + 12*scale, this.y + 16*scale, 30*scale, 12*scale);
+                ctx.fillRect(this.x + 24*scale, this.y + 28*scale, 30*scale, 16*scale);
+                ctx.fillRect(this.x + 54*scale, this.y + 12*scale, 12*scale, 16*scale);
+                
+                ctx.fillRect(this.x + 24*scale, this.y + 44*scale, 8*scale, 8*scale);
+                ctx.fillRect(this.x + 40*scale, this.y + 44*scale, 8*scale, 8*scale);
+                
+                ctx.fillRect(this.x, this.y + 24*scale, 12*scale, 8*scale);
+            }
+
+            getHitbox() {
+                if (this.ducking) {
+                    return {
+                        x: this.x + 8*scale,
+                        y: this.grounded ? this.y + 50*scale : this.y + 8*scale, // Encore plus bas
+                        width: this.width - 16*scale,
+                        height: this.grounded ? 20*scale : this.height - 25*scale // Hauteur fixe très petite
+                    };
+                }
+                return {
+                    x: this.x + 8*scale,
+                    y: this.y + 8*scale,
+                    width: this.width - 16*scale,
+                    height: this.height - 16*scale
+                };
+            }
+        }
+
+        // Classe Sol - Responsive
+        class Ground {
+            constructor() {
+                this.updateScale();
+                this.segments = [];
+                this.generateSegments();
+            }
+
+            updateScale() {
+                this.x = 0;
+                this.y = 284 * scale;
+                this.width = canvas.width;
+                this.height = 16 * scale;
+            }
+
+            generateSegments() {
+                this.segments = [];
+                const segmentSize = 40 * scale;
+                for (let i = 0; i < canvas.width + segmentSize; i += segmentSize) {
+                    this.segments.push({
+                        x: i,
+                        pattern: Math.random() > 0.5 ? 1 : 0
+                    });
+                }
+            }
+
+            update() {
+                const segmentSize = 40 * scale;
+                this.segments.forEach(segment => {
+                    segment.x -= gameSpeed;
+                });
+
+                if (this.segments[this.segments.length - 1].x < canvas.width) {
+                    this.segments.push({
+                        x: this.segments[this.segments.length - 1].x + segmentSize,
+                        pattern: Math.random() > 0.5 ? 1 : 0
+                    });
+                }
+
+                this.segments = this.segments.filter(segment => segment.x > -segmentSize);
+            }
+
+            draw() {
+                ctx.fillStyle = 'black';
+                
+                ctx.fillRect(0, this.y, canvas.width, 4*scale);
+                
+                this.segments.forEach(segment => {
+                    if (segment.pattern === 1) {
+                        ctx.fillRect(segment.x, this.y + 4*scale, 4*scale, 4*scale);
+                        ctx.fillRect(segment.x + 8*scale, this.y + 6*scale, 4*scale, 2*scale);
+                        ctx.fillRect(segment.x + 16*scale, this.y + 4*scale, 2*scale, 4*scale);
+                    }
+                });
+            }
+        }
+
+        // Classe Robotnik (remplace les nuages) - Responsive
+        class Robotnik {
+            constructor() {
+                this.x = canvas.width + 100*scale;
+                this.y = (20 + Math.random() * 40) * scale; // Plus haut : 20-60 au lieu de 40-120
+                this.width = 120 * scale;
+                this.height = 100 * scale;
+                this.frame = 0;
+            }
+
+            updateScale() {
+                // Robotnik garde sa position relative
+            }
+
+            update() {
+                this.x -= gameSpeed * 0.15; // Plus lent que les obstacles
+                this.frame += 0.1;
+                
+                // Léger mouvement vertical
+                this.y += Math.sin(this.frame) * 0.5 * scale;
+            }
+
+            draw() {
+                if (sonicSprites.robotnik && sonicSprites.robotnik.complete) {
+                    try {
+                        const spriteScale = Math.min(this.width / sonicSprites.robotnik.width, this.height / sonicSprites.robotnik.height) * 0.8;
+                        const drawWidth = sonicSprites.robotnik.width * spriteScale;
+                        const drawHeight = sonicSprites.robotnik.height * spriteScale;
+                        
+                        const drawX = this.x + (this.width - drawWidth) / 2;
+                        const drawY = this.y + (this.height - drawHeight) / 2;
+                        
+                        ctx.drawImage(sonicSprites.robotnik, drawX, drawY, drawWidth, drawHeight);
+                        return;
+                    } catch (e) {
+                        // Erreur rendu Robotnik
+                    }
+                }
+                
+                // Fallback - rectangle rouge visible pour debug
+                ctx.fillStyle = '#FF0000';
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+                
+                // Texte pour identifier
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = `${16 * scale}px Arial`;
+                ctx.fillText('ROBOTNIK', this.x + 10*scale, this.y + 50*scale);
+            }
+
+            isOffScreen() {
+                return this.x + this.width < -100*scale; // Plus de marge avant de disparaître
+            }
+        }
+
+        // Classe Spike (remplace Cactus) - Responsive - CORRIGÉE POUR HAUTEUR UNIFORME
+        class Spike {
+            constructor(type = 'single') {
+                this.x = canvas.width + 50*scale;
+                this.type = type;
+                
+                if (type === 'single') {
+                    this.width = 40 * scale;
+                    this.height = 60 * scale;
+                } else if (type === 'multiple') {
+                    this.width = 80 * scale;
+                    this.height = 60 * scale;
+                } else {
+                    this.width = 60 * scale;
+                    this.height = 80 * scale;
+                }
+                
+                // Position Y unifiée pour tous les types de spikes
+                this.y = CONFIG.DINO_GROUND_Y + 34*scale;
+            }
+
+            updateScale() {
+                // Les spikes gardent leur position relative
+                // Recalculer la position Y avec la nouvelle échelle
+                this.y = CONFIG.DINO_GROUND_Y + 34*scale;
+            }
+
+            update() {
+                this.x -= gameSpeed;
+            }
+
+            draw() {
+                if (sonicSprites.spike && sonicSprites.spike.complete) {
+                    try {
+                        if (this.type === 'multiple') {
+                            // Dessiner plusieurs spikes
+                            const spikeWidth = this.width / 2;
+                            const spriteScale = Math.min(spikeWidth / sonicSprites.spike.width, this.height / sonicSprites.spike.height) * 3.0;
+                            const drawWidth = sonicSprites.spike.width * spriteScale;
+                            const drawHeight = sonicSprites.spike.height * spriteScale;
+                            
+                            const drawY = this.y + this.height - drawHeight;
+                            
+                            // Premier spike
+                            ctx.drawImage(sonicSprites.spike, this.x, drawY, drawWidth, drawHeight);
+                            // Deuxième spike
+                            ctx.drawImage(sonicSprites.spike, this.x + spikeWidth, drawY, drawWidth, drawHeight);
+                        } else {
+                            // Spike unique
+                            const spriteScale = Math.min(this.width / sonicSprites.spike.width, this.height / sonicSprites.spike.height) * 3.0;
+                            const drawWidth = sonicSprites.spike.width * spriteScale;
+                            const drawHeight = sonicSprites.spike.height * spriteScale;
+                            
+                            const drawX = this.x + (this.width - drawWidth) / 2;
+                            const drawY = this.y + this.height - drawHeight;
+                            
+                            ctx.drawImage(sonicSprites.spike, drawX, drawY, drawWidth, drawHeight);
+                        }
+                        return;
+                    } catch (e) {
+                        // Erreur rendu Spike
+                    }
+                }
+                
+                // Fallback - dessin de triangles pointus
+                ctx.fillStyle = '#666';
+                if (this.type === 'multiple') {
+                    this.drawMultipleSpikes();
+                } else {
+                    this.drawSingleSpike();
+                }
+            }
+
+            drawSingleSpike() {
+                ctx.beginPath();
+                ctx.moveTo(this.x + this.width/2, this.y);
+                ctx.lineTo(this.x, this.y + this.height);
+                ctx.lineTo(this.x + this.width, this.y + this.height);
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            drawMultipleSpikes() {
+                const spikeWidth = this.width / 2;
+                
+                // Premier spike
+                ctx.beginPath();
+                ctx.moveTo(this.x + spikeWidth/2, this.y);
+                ctx.lineTo(this.x, this.y + this.height);
+                ctx.lineTo(this.x + spikeWidth, this.y + this.height);
+                ctx.closePath();
+                ctx.fill();
+                
+                // Deuxième spike
+                ctx.beginPath();
+                ctx.moveTo(this.x + spikeWidth + spikeWidth/2, this.y);
+                ctx.lineTo(this.x + spikeWidth, this.y + this.height);
+                ctx.lineTo(this.x + this.width, this.y + this.height);
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            getHitbox() {
+                return {
+                    x: this.x + 6*scale,
+                    y: this.y + 6*scale,
+                    width: this.width - 12*scale,
+                    height: this.height - 12*scale
+                };
+            }
+
+            isOffScreen() {
+                return this.x + this.width < 0;
+            }
+        }
+
+        // Classe Enemy (remplace Ptérodactyle) - Responsive - CORRIGÉE
+        class Enemy {
+            constructor() {
+                this.x = canvas.width + 50*scale;
+                // Plus besoin de this.y, on utilise toujours la position calculée
+                this.width = 80 * scale;
+                this.height = 60 * scale;
+                this.frame = 0;
+                this.direction = 1;
+            }
+
+            updateScale() {
+                // Les ennemis gardent leur position relative
+            }
+
+            update() {
+                this.x -= gameSpeed;
+                this.frame += 0.3;
+                // Plus de modification de this.y
+            }
+
+            // Fonction utilitaire pour obtenir la position Y unifiée
+            getGroundY() {
+                return CONFIG.DINO_GROUND_Y + 34 * scale; // Hauteur originale
+            }
+
+            draw() {
+                // Position Y unifiée pour tous les ennemis - alignés sur le sol
+                const groundAlignedY = this.getGroundY();
+                
+                if (sonicSprites.enemy && sonicSprites.enemy.complete) {
+                    try {
+                        const spriteScale = Math.min(this.width / sonicSprites.enemy.width, this.height / sonicSprites.enemy.height) * 2.0;
+                        const drawWidth = sonicSprites.enemy.width * spriteScale;
+                        const drawHeight = sonicSprites.enemy.height * spriteScale;
+                        
+                        const drawX = this.x + (this.width - drawWidth) / 2;
+                        // Toujours aligner le bas du sprite avec le sol
+                        const drawY = groundAlignedY - drawHeight;
+                        
+                        ctx.drawImage(sonicSprites.enemy, drawX, drawY, drawWidth, drawHeight);
+                        return;
+                    } catch (e) {
+                        // Erreur rendu Enemy
+                    }
+                }
+                
+                // Fallback - dessin original du ptérodactyle mais en rouge
+                ctx.fillStyle = '#CC0000';
+                
+                const wingFrame = Math.floor(this.frame) % 2;
+                
+                ctx.fillRect(this.x + 16*scale, groundAlignedY + 16*scale, 24*scale, 16*scale);
+                ctx.fillRect(this.x + 40*scale, groundAlignedY + 12*scale, 16*scale, 8*scale);
+                ctx.fillRect(this.x + 56*scale, groundAlignedY + 8*scale, 12*scale, 16*scale);
+                ctx.fillRect(this.x + 68*scale, groundAlignedY + 12*scale, 8*scale, 8*scale);
+                
+                if (wingFrame === 0) {
+                    ctx.fillRect(this.x, groundAlignedY, 32*scale, 8*scale);
+                    ctx.fillRect(this.x + 8*scale, groundAlignedY + 8*scale, 16*scale, 8*scale);
+                    ctx.fillRect(this.x + 24*scale, groundAlignedY + 32*scale, 32*scale, 8*scale);
+                    ctx.fillRect(this.x + 32*scale, groundAlignedY + 40*scale, 16*scale, 8*scale);
+                } else {
+                    ctx.fillRect(this.x + 4*scale, groundAlignedY + 4*scale, 28*scale, 8*scale);
+                    ctx.fillRect(this.x + 12*scale, groundAlignedY + 12*scale, 12*scale, 8*scale);
+                    ctx.fillRect(this.x + 28*scale, groundAlignedY + 24*scale, 28*scale, 8*scale);
+                    ctx.fillRect(this.x + 36*scale, groundAlignedY + 32*scale, 12*scale, 8*scale);
+                }
+                
+                ctx.fillRect(this.x + 8*scale, groundAlignedY + 24*scale, 16*scale, 4*scale);
+            }
+
+            getHitbox() {
+                // Utiliser la position Y alignée sur le sol pour la hitbox aussi
+                const groundAlignedY = this.getGroundY();
+                return {
+                    x: this.x + 8*scale,
+                    y: groundAlignedY + 8*scale,
+                    width: this.width - 16*scale,
+                    height: this.height - 16*scale
+                };
+            }
+
+            isOffScreen() {
+                return this.x + this.width < 0;
+            }
+        }
+
+        // Classe Étoile - Responsive
+        class Star {
+            constructor() {
+                this.x = canvas.width + Math.random() * 200*scale;
+                this.y = Math.random() * 160*scale;
+                this.size = (2 + Math.random() * 2) * scale;
+            }
+
+            updateScale() {
+                // Les étoiles gardent leur position relative
+            }
+
+            update() {
+                this.x -= gameSpeed * 0.1;
+            }
+
+            draw() {
+                ctx.fillStyle = '#fff';
+                ctx.fillRect(this.x, this.y, this.size, this.size);
+            }
+
+            isOffScreen() {
+                return this.x < 0;
+            }
+        }
+
+        // Détection de collision
+        function checkCollision(rect1, rect2) {
+            return rect1.x < rect2.x + rect2.width &&
+                   rect1.x + rect1.width > rect2.x &&
+                   rect1.y < rect2.y + rect2.height &&
+                   rect1.y + rect1.height > rect2.y;
+        }
+
+        // Gestion des entrées
+        function handleInput() {
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Space' || e.code === 'ArrowUp') {
+                    e.preventDefault();
+                    if (!gameStarted) {
+                        startGame();
+                    } else if (gameRunning) {
+                        dino.jump();
+                    } else {
+                        restartGame();
+                    }
+                }
+                
+                if (e.code === 'ArrowDown' && gameRunning) {
+                    e.preventDefault();
+                    dino.duck(true);
+                }
+            });
+
+            document.addEventListener('keyup', (e) => {
+                if (e.code === 'ArrowDown') {
+                    dino.duck(false);
+                }
+            });
+
+            canvas.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!gameStarted) {
+                    startGame();
+                } else if (gameRunning) {
+                    dino.jump();
+                } else {
+                    restartGame();
+                }
+            });
+
+            // Empêcher le zoom sur double tap
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function (event) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+
+            // Contrôles tactiles sur le canvas
+            canvas.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                if (!gameStarted) {
+                    startGame();
+                } else if (gameRunning) {
+                    dino.jump();
+                } else {
+                    restartGame();
+                }
+            });
+
+            // Contrôles tactiles séparés
+            let isJumping = false;
+            let isDucking = false;
+
+            const jumpBtn = document.getElementById('jumpBtn');
+            const duckBtn = document.getElementById('duckBtn');
+
+            if (jumpBtn) {
+                jumpBtn.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (!gameStarted) {
+                        startGame();
+                    } else if (gameRunning) {
+                        dino.jump();
+                    }
+                });
+
+                // Ajouter aussi les événements click pour les tests
+                jumpBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (!gameStarted) {
+                        startGame();
+                    } else if (gameRunning) {
+                        dino.jump();
+                    }
+                });
+            }
+
+            if (duckBtn) {
+                duckBtn.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (gameRunning) {
+                        dino.duck(true);
+                        isDucking = true;
+                    }
+                });
+
+                duckBtn.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (isDucking) {
+                        dino.duck(false);
+                        isDucking = false;
+                    }
+                });
+
+                // Ajouter aussi les événements click pour les tests
+                duckBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (gameRunning) {
+                        dino.duck(true);
+                        setTimeout(() => dino.duck(false), 200); // Duck temporaire sur click
+                    }
+                });
+            }
+        }
+
+        // Mise à jour du jeu
+        function update() {
+            if (!gameRunning) return;
+
+            frame++;
+            score = Math.floor(frame / 12);
+            
+            if (gameSpeed < CONFIG.MAX_SPEED) {
+                gameSpeed += CONFIG.SPEED_INCREMENT * scale;
+                
+                const currentLevel = Math.floor(score / CONFIG.ACCELERATION_THRESHOLD);
+                const targetSpeed = CONFIG.GROUND_SPEED + (currentLevel * CONFIG.BONUS_ACCELERATION * scale);
+                
+                if (gameSpeed < targetSpeed && gameSpeed < CONFIG.MAX_SPEED) {
+                    gameSpeed = Math.min(targetSpeed, CONFIG.MAX_SPEED);
+                }
+            }
+
+            if (backgroundSprite) {
+                backgroundX -= gameSpeed * 0.5;
+                const bgScale = canvas.height / backgroundSprite.height;
+                const scaledWidth = backgroundSprite.width * bgScale;
+                
+                if (backgroundX <= -scaledWidth) {
+                    backgroundX = 0;
+                }
+            }
+
+            dino.update();
+            ground.update();
+
+            // Gestion de Robotnik (un seul à la fois)
+            if (robotnik) {
+                robotnik.update();
+                if (robotnik.isOffScreen()) {
+                    robotnik = null;
+                }
+            } else if (Math.random() < 0.02 || (frame > 300 && frame % 600 === 0)) {
+                robotnik = new Robotnik();
+            }
+
+            obstacles.forEach(obstacle => obstacle.update());
+            obstacles = obstacles.filter(obstacle => !obstacle.isOffScreen());
+
+            const lastObstacle = obstacles[obstacles.length - 1];
+            const dynamicMinDistance = CONFIG.MIN_OBSTACLE_DISTANCE + (gameSpeed - CONFIG.GROUND_SPEED) * 10;
+            const canSpawn = !lastObstacle || 
+                           (canvas.width - lastObstacle.x) > dynamicMinDistance;
+
+            if (canSpawn) {
+                const speedMultiplier = 1 + (gameSpeed - CONFIG.GROUND_SPEED) * 0.1;
+                
+                if (Math.random() < CONFIG.CACTUS_SPAWN_RATE * speedMultiplier) {
+                    const types = ['single', 'multiple', 'tall'];
+                    const type = types[Math.floor(Math.random() * types.length)];
+                    obstacles.push(new Spike(type));
+                } else if (Math.random() < CONFIG.PTERODACTYL_SPAWN_RATE * speedMultiplier && score > 100) {
+                    obstacles.push(new Enemy());
+                }
+            }
+
+            if (score > 700) {
+                if (Math.random() < CONFIG.STAR_SPAWN_RATE) {
+                    stars.push(new Star());
+                }
+                stars.forEach(star => star.update());
+                stars = stars.filter(star => !star.isOffScreen());
+            }
+
+            const dinoHitbox = dino.getHitbox();
+            for (let obstacle of obstacles) {
+                if (checkCollision(dinoHitbox, obstacle.getHitbox())) {
+                    gameOver();
+                    break;
+                }
+            }
+        }
+
+        // Rendu du jeu
+        function render() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const isNightMode = score > 700 && Math.floor(score / 100) % 2 === 1;
+            if (isNightMode && !backgroundSprite) {
+                canvas.style.backgroundColor = '#0d1117';
+            } else {
+                canvas.style.backgroundColor = '#f7f7f7';
+            }
+
+            drawBackground();
+
+            if (isNightMode && !backgroundSprite) {
+                stars.forEach(star => star.draw());
+            }
+
+            // Dessiner Robotnik en arrière-plan
+            if (robotnik) {
+                robotnik.draw();
+            }
+
+            if (!backgroundSprite) {
+                ground.draw();
+            }
+
+            obstacles.forEach(obstacle => obstacle.draw());
+            dino.draw();
+            drawScore();
+        }
+
+        // Fonction pour dessiner le fond Sonic
+        function drawBackground() {
+            if (!backgroundSprite || !backgroundSprite.complete) {
+                return;
+            }
+
+            try {
+                ctx.save();
+                ctx.globalAlpha = 0.7;
+
+                const bgScale = canvas.height / backgroundSprite.height;
+                const scaledWidth = backgroundSprite.width * bgScale;
+                const scaledHeight = canvas.height;
+
+                const numInstances = Math.ceil(canvas.width / scaledWidth) + 2;
+                const normalizedX = backgroundX % scaledWidth;
+
+                for (let i = 0; i < numInstances; i++) {
+                    const x = normalizedX + (i * scaledWidth);
+                    ctx.drawImage(
+                        backgroundSprite,
+                        x, 0, scaledWidth, scaledHeight
+                    );
+                }
+
+                ctx.restore();
+            } catch (e) {
+                // Erreur rendu fond
+            }
+        }
+
+        // Affichage du score - Responsive
+        function drawScore() {
+            ctx.fillStyle = '#000000';
+            ctx.font = `${Math.max(12, 18 * scale)}px monospace`;
+            ctx.textAlign = 'right';
+            
+            const scoreText = Math.floor(score).toString().padStart(5, '0');
+            ctx.fillText(`HI ${highScore.toString().padStart(5, '0')} ${scoreText}`, canvas.width - 40*scale, 35*scale);
+        }
+
+        // Démarrage du jeu
+        function startGame() {
+            gameStarted = true;
+            gameRunning = true;
+            // S'assurer que la vitesse est correctement initialisée
+            gameSpeed = CONFIG.GROUND_SPEED;
+            document.querySelector('.instructions').style.display = 'none';
+            gameLoop();
+        }
+
+        // Game Over
+        function gameOver() {
+            gameRunning = false;
+            dino.die();
+            
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('dinoHighScore', highScore.toString());
+            }
+            
+            document.getElementById('gameOver').style.display = 'block';
+        }
+
+        // Redémarrage
+        function restartGame() {
+            gameRunning = true;
+            gameStarted = true;
+            score = 0;
+            frame = 0;
+            gameSpeed = CONFIG.GROUND_SPEED;
+            backgroundX = 0;
+            
+            dino = new Dino();
+            ground = new Ground();
+            obstacles = [];
+            robotnik = null;
+            stars = [];
+            obstacles = [];
+            robotnik = null;
+            stars = [];
+            
+            document.getElementById('gameOver').style.display = 'none';
+            document.querySelector('.instructions').style.display = 'none';
+            
+            gameLoop();
+        }
+
+        // Boucle principale du jeu
+        function gameLoop() {
+            update();
+            render();
+            
+            if (gameRunning) {
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        // Initialisation
+        function init() {
+            canvas = document.getElementById('gameCanvas');
+            ctx = canvas.getContext('2d');
+            
+            // Important : calculer l'échelle AVANT de créer les objets
+            calculateScale();
+            loadSonicSprites();
+            
+            dino = new Dino();
+            ground = new Ground();
+            
+            // Initialiser la vitesse après que l'échelle soit calculée
+            gameSpeed = CONFIG.GROUND_SPEED;
+            
+            handleInput();
+            render();
+
+            // Gestion du redimensionnement
+            window.addEventListener('resize', handleResize);
+            
+            // Gestion de l'orientation sur mobile
+            window.addEventListener('orientationchange', () => {
+                setTimeout(handleResize, 100);
+            });
+        }
+
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

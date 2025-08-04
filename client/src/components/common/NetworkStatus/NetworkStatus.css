@@ -1,0 +1,57 @@
+.network-status {
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.network-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-dot.online {
+  background: #4CAF50;
+  animation: none;
+}
+
+.status-dot.offline {
+  background: #f44336;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.status-text {
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .network-status {
+    top: 5px;
+    right: 5px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+} 

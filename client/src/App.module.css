@@ -1,0 +1,71 @@
+.loadingScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+}
+
+.loadingContent {
+  text-align: center;
+}
+
+.loadingIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.notFoundContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  text-align: center;
+}
+
+.notFoundTitle {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.notFoundText {
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+.backButton {
+  padding: 10px 20px;
+  background: #f97316;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.backButton:hover {
+  background: #ea6b0a;
+}
+
+.constructionPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  text-align: center;
+  color: #666;
+  font-size: 1.2rem;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+} 

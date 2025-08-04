@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Headers de sécurité -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https://*.youtube.com https://*.ytimg.com http://*.youtube.com;
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https: http://localhost:5000;
+      connect-src 'self' https: http://localhost:5000 http://127.0.0.1:5000 https://api.rss2json.com;
+      font-src 'self';
+      object-src 'none';
+      media-src 'self';
+      frame-src 'self' https://*.youtube.com https://*.youtu.be;
+      child-src 'self' https://*.youtube.com https://*.youtu.be;
+    ">
+    
+    <title>SEGAROW</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon_blanc.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" href="assets/img/favicon_noir.png" media="(prefers-color-scheme: light)">
+    <!-- <link rel="icon" type="image/png" href="assets/img/favicon_blanc.png"> -->
+  </head>
+  <body>
+    <div id="root"></div>
+    
+
+    <script>
+      // Gestion de la mise à jour du Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              // Vérifier les mises à jour
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // Nouveau Service Worker disponible
+                    
+                    // Vider l'ancien cache pour forcer le rechargement des sprites
+                    caches.keys().then(cacheNames => {
+                      return Promise.all(
+                        cacheNames.map(cacheName => {
+                          if (cacheName !== 'segarow-offline-v8') {
+                            return caches.delete(cacheName);
+                          }
+                        })
+                      );
+                    });
+                    
+                    // Recharger la page pour activer le nouveau Service Worker
+                    window.location.reload();
+                  }
+                });
+              });
+            })
+            .catch((error) => {
+              // Échec de l'enregistrement du Service Worker
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

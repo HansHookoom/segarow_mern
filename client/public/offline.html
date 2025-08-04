@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEGAROW - Hors ligne</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #191D32 0%, #2D3250 50%, #424769 100%);
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .offline-container {
+            width: 100%;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        .offline-title {
+            font-size: clamp(2rem, 8vw, 4rem);
+            margin: 0 0 10px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .sonic-icon {
+            font-size: clamp(1.5rem, 6vw, 3rem);
+            animation: spin 3s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .offline-subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            margin: 0 0 20px 0;
+            opacity: 0.9;
+        }
+
+        .offline-message {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin: 0 0 40px 0;
+            opacity: 0.8;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: clamp(10px, 3vw, 30px);
+            margin: 20px auto;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .game-frame {
+            width: 100%;
+            height: clamp(200px, 40vh, 400px);
+            border: none;
+            border-radius: 10px;
+            background: #f7f7f7;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .game-frame::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Container pour les indicateurs et le bouton */
+        .status-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .indicators-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* flex-wrap: wrap; */
+            justify-content: center;
+        }
+
+        .connection-status {
+            padding: clamp(6px, 1.5vw, 12px) clamp(12px, 3vw, 20px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: inline-block;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 90%;
+            word-wrap: break-word;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: clamp(6px, 1.5vw, 8px);
+            height: clamp(6px, 1.5vw, 8px);
+            border-radius: 50%;
+            background: #ff4444;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.online {
+            background: #44ff44;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Indicateur de statut du serveur */
+        .server-status {
+            padding: clamp(6px, 1.5vw, 12px) clamp(12px, 3vw, 20px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: inline-block;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 90%;
+            word-wrap: break-word;
+        }
+
+        .server-indicator {
+            display: inline-block;
+            width: clamp(6px, 1.5vw, 8px);
+            height: clamp(6px, 1.5vw, 8px);
+            border-radius: 50%;
+            background: #ff4444;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .server-indicator.online {
+            background: #44ff44;
+            animation: none;
+        }
+
+        .server-indicator.warning {
+            background: #ffaa00;
+            animation: pulse 1s infinite;
+        }
+
+        /* Mobile First - Base styles (mobile) */
+        .offline-container {
+            padding: 10px 5px;
+        }
+
+        .offline-message {
+            padding: 0 10px;
+            margin-bottom: 25px;
+        }
+
+        .game-container {
+            padding: 10px;
+            margin: 10px auto;
+            border-radius: 10px;
+        }
+
+        .game-frame {
+            border-radius: 8px;
+        }
+
+        .status-container {
+            margin-top: 15px;
+        }
+
+        .indicators-row {
+            gap: 10px;
+        }
+
+        /* Responsive Design - Très petits écrans */
+        @media (max-width: 320px) {
+            .offline-container {
+                padding: 5px;
+            }
+
+            .offline-message {
+                padding: 0 5px;
+                margin-bottom: 20px;
+            }
+
+            .game-container {
+                padding: 8px;
+                margin: 8px auto;
+            }
+        }
+
+        /* Responsive Design - Mobiles moyens */
+        @media (min-width: 481px) {
+            .offline-container {
+                padding: 10px;
+            }
+
+            .offline-title {
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .offline-message {
+                padding: 0 15px;
+                margin-bottom: 30px;
+            }
+
+            .game-container {
+                /* padding: 15px; */
+                margin: 15px auto;
+            }
+
+            .game-frame {
+                border-radius: 10px;
+            }
+        }
+
+        /* Responsive Design - Tablettes */
+        @media (min-width: 769px) {
+            .offline-container {
+                padding: 15px;
+            }
+
+            .game-container {
+                margin: 15px auto;
+            }
+
+            .game-frame {
+                height: clamp(180px, 35vh, 350px);
+            }
+
+            .status-container {
+                margin-top: 15px;
+            }
+
+            .indicators-row {
+                gap: 12px;
+            }
+        }
+
+        /* Responsive Design - Desktop */
+        @media (min-width: 1025px) {
+            .offline-container {
+                padding: 20px;
+                max-width: 1200px;
+            }
+
+            .offline-message {
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .game-container {
+                max-width: 1040px;
+            }
+
+            .game-frame {
+                max-width: 1200px;
+            }
+        }
+
+        /* Orientation paysage sur mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .offline-container {
+                padding: 10px;
+            }
+
+            .offline-title {
+                font-size: clamp(1.5rem, 6vw, 2.5rem);
+                margin-bottom: 5px;
+            }
+
+            .offline-subtitle {
+                font-size: clamp(1rem, 3vw, 1.3rem);
+                margin-bottom: 10px;
+            }
+
+            .offline-message {
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
+                margin-bottom: 20px;
+            }
+
+            .game-container {
+                padding: 10px;
+                margin: 10px auto;
+            }
+
+            .game-frame {
+                height: clamp(150px, 30vh, 200px);
+            }
+
+            .connection-status {
+                margin-top: 10px;
+                padding: 8px 15px;
+            }
+        }
+
+        /* Amélioration de l'accessibilité */
+        @media (prefers-reduced-motion: reduce) {
+            .sonic-icon {
+                animation: none;
+            }
+            
+            .status-indicator {
+                animation: none;
+            }
+        }
+
+        /* Bouton de redirection manuelle */
+        .manual-redirect {
+            margin-top: 0;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .redirect-button {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: clamp(6px, 1.5vw, 12px) clamp(12px, 3vw, 20px);
+            border-radius: 15px;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            word-wrap: break-word;
+            text-decoration: none;
+        }
+
+        .redirect-button:hover {
+            background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .redirect-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
+        }
+
+        .button-icon {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+        }
+
+
+
+        /* Mode sombre/clair automatique */
+        @media (prefers-color-scheme: light) {
+            body {
+                background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 50%, #d0d0d0 100%);
+                color: #333;
+            }
+            
+            .game-container,
+            .connection-status {
+                background: rgba(0, 0, 0, 0.1);
+                border: 1px solid rgba(0, 0, 0, 0.2);
+            }
+            
+            .redirect-button {
+                background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+                box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+            }
+            
+            .redirect-button:hover {
+                background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+                box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <h1 class="offline-title">
+            <span class="sonic-icon">🌀</span>
+            SEGAROW
+        </h1>
+        <h2 class="offline-subtitle">Mode Hors Ligne</h2>
+        <p class="offline-message">
+            Oups ! Il semble que vous n'ayez pas de connexion internet ou que le serveur soit en maintenance.<br>
+            Pas de panique, amusez-vous avec notre jeu Sonic en attendant !
+        </p>
+
+        <div class="game-container">
+            <iframe 
+                src="./dino_sonic/sonic_dino_game.html" 
+                class="game-frame"
+                title="Sonic Dino Game - Mode Hors Ligne"
+                scrolling="no"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="status-container">
+            <div class="indicators-row">
+                <div class="connection-status">
+                    <span class="status-indicator" id="statusIndicator"></span>
+                    <span id="statusText">Hors ligne</span>
+                </div>
+                
+                <div class="server-status">
+                    <span class="server-indicator" id="serverIndicator"></span>
+                    <span id="serverText">Serveurs 0/2 opérationnels</span>
+                </div>
+                
+                <div class="manual-redirect" id="manualRedirect" style="display: none;">
+                    <button class="redirect-button" onclick="redirectToHome()">
+                        Retour à l'accueil
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isOnline = navigator.onLine;
+        let countdownInterval = null; // Variable globale pour le timer
+        
+        // Forcer la mise à jour du Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistration().then((registration) => {
+                if (registration) {
+                    registration.update();
+                    
+                    // Écouter les messages du Service Worker
+                    navigator.serviceWorker.addEventListener('message', (event) => {
+                        // Message du Service Worker reçu
+                    });
+                }
+            });
+            
+            // Déboguer le cache
+            navigator.serviceWorker.ready.then(() => {
+                caches.keys().then((cacheNames) => {
+                    // Caches disponibles
+                    cacheNames.forEach((cacheName) => {
+                        caches.open(cacheName).then((cache) => {
+                            cache.keys().then((keys) => {
+                                // Fichiers en cache
+                            });
+                        });
+                    });
+                });
+            });
+        }
+        
+        // Configuration des serveurs
+        const NODE_SERVER_URL = 'http://localhost:5000'; // Serveur Node.js
+        const REACT_SERVER_URL = window.location.origin; // Serveur React (même origine)
+        const SERVER_CHECK_INTERVAL = 10000; // Vérification toutes les 10 secondes
+        
+        let nodeServerStatus = false;
+        let reactServerStatus = false;
+
+        function updateConnectionStatus() {
+            const indicator = document.getElementById('statusIndicator');
+            const statusText = document.getElementById('statusText');
+            const manualRedirect = document.getElementById('manualRedirect');
+            
+            if (navigator.onLine) {
+                indicator.classList.add('online');
+                statusText.textContent = 'Connexion réseau établie';
+                
+                // Annuler le timer précédent s'il existe
+                if (countdownInterval) {
+                    clearInterval(countdownInterval);
+                    countdownInterval = null;
+                }
+                
+                // Vérifier le statut du serveur
+                checkServerStatus();
+                
+            } else {
+                // Connexion perdue - annuler le timer de redirection
+                if (countdownInterval) {
+                    clearInterval(countdownInterval);
+                    countdownInterval = null;
+                }
+                
+                indicator.classList.remove('online');
+                statusText.textContent = 'Hors ligne';
+                
+                // Masquer le bouton de redirection
+                manualRedirect.style.display = 'none';
+                
+                // Marquer tous les serveurs comme inaccessibles
+                updateServerStatus(0, 2);
+            }
+        }
+
+        async function checkServerStatus() {
+            // Vérifier le serveur Node.js
+            try {
+                const nodeResponse = await fetch(`${NODE_SERVER_URL}/api/health`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    signal: AbortSignal.timeout(5000)
+                });
+                nodeServerStatus = nodeResponse.ok;
+            } catch (error) {
+                nodeServerStatus = false;
+            }
+
+            // Vérifier le serveur React
+            try {
+                const reactResponse = await fetch(`${REACT_SERVER_URL}`, {
+                    method: 'GET',
+                    signal: AbortSignal.timeout(5000)
+                });
+                reactServerStatus = reactResponse.ok;
+            } catch (error) {
+                reactServerStatus = false;
+            }
+
+            // Calculer le statut global
+            const totalServers = 2;
+            const operationalServers = (nodeServerStatus ? 1 : 0) + (reactServerStatus ? 1 : 0);
+            
+            // Mettre à jour l'affichage
+            updateServerStatus(operationalServers, totalServers);
+        }
+
+        function updateServerStatus(operationalServers, totalServers) {
+            const serverIndicator = document.getElementById('serverIndicator');
+            const serverText = document.getElementById('serverText');
+            const manualRedirect = document.getElementById('manualRedirect');
+            
+            // Déterminer le statut et la couleur
+            if (operationalServers === totalServers) {
+                // Tous les serveurs opérationnels
+                serverIndicator.classList.remove('warning');
+                serverIndicator.classList.add('online');
+                serverText.textContent = `Serveurs ${operationalServers}/${totalServers} opérationnels`;
+                showRedirectButton();
+            } else if (operationalServers > 0) {
+                // Au moins un serveur opérationnel
+                serverIndicator.classList.remove('online');
+                serverIndicator.classList.add('warning');
+                serverText.textContent = `Serveurs ${operationalServers}/${totalServers} opérationnels`;
+                hideRedirectButton();
+            } else {
+                // Aucun serveur opérationnel
+                serverIndicator.classList.remove('online');
+                serverIndicator.classList.add('warning');
+                serverText.textContent = `Serveurs ${operationalServers}/${totalServers} opérationnels`;
+                hideRedirectButton();
+            }
+        }
+
+        function showRedirectButton() {
+            const manualRedirect = document.getElementById('manualRedirect');
+            manualRedirect.style.display = 'block';
+        }
+
+        function hideRedirectButton() {
+            const manualRedirect = document.getElementById('manualRedirect');
+            manualRedirect.style.display = 'none';
+        }
+
+        function redirectToHome() {
+            // Forcer le rechargement complet de l'application React
+            // en ajoutant un paramètre pour éviter le cache
+            const timestamp = new Date().getTime();
+            window.location.href = `${window.location.origin}?t=${timestamp}`;
+        }
+
+        // Écouter les changements de statut de connexion
+        window.addEventListener('online', updateConnectionStatus);
+        window.addEventListener('offline', updateConnectionStatus);
+
+        // Vérification périodique de la connexion et du serveur
+        setInterval(() => {
+            if (navigator.onLine && !isOnline) {
+                updateConnectionStatus();
+            }
+            isOnline = navigator.onLine;
+        }, 5000);
+
+        // Vérification périodique du serveur
+        setInterval(() => {
+            if (navigator.onLine) {
+                checkServerStatus();
+            }
+        }, SERVER_CHECK_INTERVAL);
+
+        // Initialiser le statut
+        updateConnectionStatus();
+    </script>
+</body>
+</html> 

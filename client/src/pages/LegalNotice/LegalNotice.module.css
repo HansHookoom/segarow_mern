@@ -1,0 +1,171 @@
+.legalNoticeContainer {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 3%;
+  padding-bottom: 5%;
+  min-height: 100vh;
+  font-family: 'Gilroy', sans-serif;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.content {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.title {
+  font-size: 2em;
+  margin: 0 0 1.5em 0;
+  color: var(--color-text);
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 2px solid rgba(242, 170, 121, 0.6);
+  padding-bottom: 16px;
+}
+
+.section {
+  margin-bottom: 2em;
+}
+
+.sectionTitle {
+  font-size: 1.5em;
+  margin: 1.5em 0 0.5em 0;
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(242, 170, 121, 0.6);
+  text-underline-offset: 8px;
+}
+
+.siteName {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #F2AA79;
+  margin-bottom: 0.5em;
+}
+
+.siteUrl {
+  font-family: 'Courier New', monospace;
+  background: rgba(242, 170, 121, 0.1);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(242, 170, 121, 0.3);
+  display: inline-block;
+  margin-bottom: 1em;
+}
+
+.legalNoticeContainer p {
+  margin-bottom: 1em;
+  white-space: pre-line;
+}
+
+.legalNoticeContainer a {
+  color: #FF8950;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.legalNoticeContainer a:hover {
+  border-color: #FF8950;
+}
+
+/* Styles pour les liens GitHub */
+.githubLink {
+  word-break: break-all;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* Styles pour l'email de contact */
+.contactEmail {
+  color: #FF8950;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.contactEmail:hover {
+  border-color: #FF8950;
+}
+
+.legalNoticeContainer ul {
+  margin: 1em 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.legalNoticeContainer ul li {
+  margin-bottom: 0.8em;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 1.5em;
+}
+
+.legalNoticeContainer ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-text);
+  font-weight: bold;
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+  .legalNoticeContainer {
+    max-width: 1200px;
+    padding: 0 5%;
+  }
+  
+  .content {
+    border-radius: 12px;
+    padding: 5%;
+    /* margin-top: 32px; */
+    margin: 5% 0 5% 0;
+  }
+  
+  .title {
+    font-size: 2.5em;
+  }
+  
+  .sectionTitle {
+    font-size: 1.75em;
+  }
+}
+
+/* Thème clair */
+body[data-theme='light'] .legalNoticeContainer {
+  color: #191D32;
+}
+
+body[data-theme='light'] .content {
+  background: #f8f9fb;
+  border: 1px solid #d1d5db;
+}
+
+body[data-theme='light'] .title {
+  color: #191D32;
+  border-bottom: 2px solid #F2AA79;
+}
+
+body[data-theme='light'] .sectionTitle {
+  color: #191D32;
+  text-decoration-color: #F2AA79;
+}
+
+body[data-theme='light'] .siteName {
+  color: #D4956C;
+}
+
+body[data-theme='light'] .siteUrl {
+  background: #f1f5f9;
+  border: 1px solid #d1d5db;
+  color: #191D32;
+} 

@@ -1,0 +1,92 @@
+/* ======================================== Pagination pour Articles et Reviews ======================================== */
+
+.pagination {
+  width: 100%;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.pagination ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination li {
+  margin: 5px 2px;
+}
+
+.pagination button,
+.pagination .ellipsis {
+  display: inline-block;
+  padding: 8px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+  color: #333;
+  background-color: #f2f2f2;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.pagination .ellipsis {
+  cursor: default;
+  background-color: transparent;
+}
+
+/* Style pour la page active */
+.pagination .current {
+  background-color: #EA8947 !important; /* Pour afficher la page active */
+  color: white !important;
+  font-weight: bold;
+}
+
+/* Style pour les boutons précédent/suivant */
+.pagination .prev,
+.pagination .next {
+  background-color: #333;
+  color: white;
+}
+
+/* Hover effect pour les liens */
+.pagination button:hover:not(.current) {
+  background-color: #ddd;
+  transform: translateY(-2px);
+}
+
+.pagination .prev:hover,
+.pagination .next:hover {
+  background-color: #555;
+}
+
+/* Media query pour les écrans de taille moyenne et grande */
+@media (min-width: 768px) {
+  .pagination {
+      margin: 30px 0;
+  }
+  
+  .pagination ul {
+      flex-wrap: nowrap; /* Assure que tout reste sur une seule ligne */
+  }
+  
+  .pagination li {
+      margin: 0 5px;
+  }
+  
+  .pagination button,
+  .pagination .ellipsis {
+      padding: 10px 15px;
+      font-size: 16px;
+  }
+  
+  /* Plus d'espace pour les boutons précédent/suivant sur desktop */
+  .pagination .prev,
+  .pagination .next {
+      padding: 10px 20px;
+  }
+} 

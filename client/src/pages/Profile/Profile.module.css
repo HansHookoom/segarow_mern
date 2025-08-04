@@ -1,0 +1,376 @@
+.profileContainer {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.profileBox {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.profileHeader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profileTitle {
+  color: var(--color-text);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.profileSubtitle {
+  color: var(--color-link);
+  font-size: 16px;
+  margin: 0;
+}
+
+.userInfo {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.infoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.infoItem:last-child {
+  margin-bottom: 0;
+}
+
+.infoLabel {
+  color: var(--color-link);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.infoValue {
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.errorMessage {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: var(--color-text);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.successMessage {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: var(--color-text);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.profileForm {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.formSection {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sectionTitle {
+  color: var(--color-text);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.sectionDescription {
+  color: var(--color-link-hover);
+  font-size: 14px;
+  margin: 0 0 20px 0;
+}
+
+.formField {
+  margin-bottom: 20px;
+}
+
+.formField:last-child {
+  margin-bottom: 0;
+}
+
+.formLabel {
+  display: block;
+  color: var(--color-link);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.formInput {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--color-text);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(242, 170, 121, 0.1);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.formInput::placeholder {
+  color: var(--color-link-hover);
+}
+
+.formActions {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.saveButton {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #D4956C 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(242, 170, 121, 0.3);
+}
+
+.saveButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(242, 170, 121, 0.4);
+}
+
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Section dangereuse */
+.dangerSection {
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.dangerHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dangerTitle {
+  color: #ef4444;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.dangerDescription {
+  color: rgba(239, 68, 68, 0.8);
+  font-size: 14px;
+  margin: 0;
+}
+
+.showDeleteBtn {
+  width: 100%;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.showDeleteBtn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.deleteForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.deleteWarning {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.deleteWarning h4 {
+  color: #ef4444;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+.deleteWarning p {
+  color: rgba(239, 68, 68, 0.9);
+  font-size: 14px;
+  margin: 0 0 8px 0;
+}
+
+.deleteWarning ul {
+  color: rgba(239, 68, 68, 0.9);
+  font-size: 14px;
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.deleteWarning li {
+  margin-bottom: 4px;
+}
+
+.deleteFields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.deleteActions {
+  display: flex;
+  gap: 12px;
+  /* justify-content: flex-end;
+  flex-wrap: wrap; */
+}
+
+.cancelDeleteBtn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancelDeleteBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.cancelDeleteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.confirmDeleteBtn {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border: none;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.confirmDeleteBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.confirmDeleteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+  .profileBox {
+    padding: 40px;
+    margin: 0;
+  }
+  
+  .profileTitle {
+    font-size: 28px;
+  }
+  
+  .formSection {
+    padding: 24px;
+  }
+
+  .deleteActions {
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+}
+
+/* Amélioration du mode clair pour les encadrés et champs */
+[data-theme='light'] .userInfo,
+[data-theme='light'] .formSection {
+  background: #f4f6fa !important;
+  border: 1px solid #e0e0e0 !important;
+}
+[data-theme='light'] .formInput {
+  background: #fff !important;
+  border: 1px solid #d1d5db !important;
+  color: var(--color-text) !important;
+}
+[data-theme='light'] .formInput::placeholder {
+  color: var(--color-link-hover) !important;
+}
+
+[data-theme='light'] .cancelDeleteBtn {
+  background: #fff !important;
+  border: 1.5px solid #d1d5db !important;
+  color: var(--color-text) !important;
+  box-shadow: 0 2px 8px rgba(25,29,50,0.04);
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+[data-theme='light'] .cancelDeleteBtn:hover:not(:disabled) {
+  background: #f4f6fa !important;
+  border-color: #bdbdbd !important;
+  color: var(--color-primary) !important;
+} 

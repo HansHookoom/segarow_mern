@@ -1,0 +1,18 @@
+.secureLink {
+  transition: all 0.2s ease;
+}
+
+.secureLink:hover {
+  opacity: 0.8;
+}
+
+.secureLink:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+} 

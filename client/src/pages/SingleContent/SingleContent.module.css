@@ -1,0 +1,1111 @@
+/* ======================================== Single Content CSS ======================================== */
+/* CSS unifié pour les articles ET les reviews (comme single.css WordPress) */
+
+/* Base styles (mobile first) */
+.singleGlobalContent {
+  margin: 0 auto;
+  margin-top: 2%;
+  padding: 0 5%;
+}
+
+.singleMainTitle {
+  font-size: 32px;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.singleImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.singleInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.singleContent {
+  flex: 1;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+h2.singleTitle {
+  margin-top: 0;
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.singleText {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.singleExcerpt {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-text);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+  background-color: var(--color-background-secondary);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0 8px 8px 0;
+}
+
+.singleMainContent {
+  margin-top: 1rem;
+  display: contents;
+}
+
+.singleMeta {
+  width: 100%;
+  padding-top: 30px;
+  position: relative;
+}
+
+.singleMeta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--color-text);
+}
+
+.singlePublishDate {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.singleLikesSection, .singleReadingTime {
+  /* display: flex; */
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.singleLikesCount, .singleMinutes {
+  margin-right: 5px;
+}
+
+.singleLikeButtonContainer {
+  margin-top: 20px;
+  position: relative; /* Nécessaire pour positionner Sonic */
+  overflow: hidden; /* Empêche Sonic de déborder en dehors du bouton */
+}
+
+.singleLikeButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 25px;
+  border: 2px solid;
+  border-radius: 25px;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 15px;
+  width: 100%;
+  justify-content: center;
+}
+
+.singleLikeButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.singleLikeButton.singlePrimary {
+    background: #e8904e;
+    border-color: #e8904e;
+}
+
+.singleLikeButton.singlePrimary:hover {
+    background: #d68040;
+}
+
+.singleLikeButton.singleSecondary {
+    border-color: var(--color-text);
+}
+
+/* Classe pour rendre le bouton transparent pendant l'animation Sonic */
+.singleLikeButton.singleAnimating {
+  background: transparent !important;
+  border: 2px solid transparent !important;
+  border-color: transparent !important;
+  color: transparent !important;
+}
+
+.singlePrimary {
+  background: #e8904e;
+  border-color: #e8904e;
+}
+
+.singlePrimary:hover {
+  background: #FF7030;
+}
+
+.singleSecondary {
+  border-color: var(--color-text);
+}
+
+.singleShareButton {
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  /* border-color: #667eea; */
+  background-image: radial-gradient(ellipse at top left, rgba(133, 189, 227, 1), transparent 100%
+  100%), linear-gradient(to bottom right, #1a1a2e, #191d32);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.singleShareButton:hover {
+  /* background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%); */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.singleShareButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.singleShareButton::before {
+  content: "🔗";
+  margin-right: 8px;
+}
+
+.singleHeart {
+  color: var(--color-text);
+  font-size: 18px;
+}
+
+.singleClock {
+  color: var(--color-text);
+  font-size: 18px;
+}
+
+
+
+/* Styles pour la section "Articles" / "Reviews" précédents */
+.singlePreviousContent {
+  padding-bottom: 5%;
+}
+
+.singlePreviousContentTitle {
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+.singleGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.singleCard {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 240px;
+  background-color: #171924;
+}
+
+.singleCardLink {
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-decoration: none;
+  position: relative;
+  background-color: #171924;
+}
+
+.singleCardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+  transform: scale(1.01);
+  background-color: #171924;
+}
+
+.singleCardLink:hover .singleCardImg {
+  transform: scale(1.05);
+}
+
+/* Style pour mobile (jusqu'à 421px) */
+.singleCardOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  z-index: 1;
+}
+
+.singleCardCover {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 80px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 10%;
+  z-index: 1;
+  margin: 0;
+  visibility: hidden;
+}
+
+/* En mobile, on n'utilise pas de conteneur pour les éléments */
+.singleCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 0;
+}
+
+.singleCardTitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.singleCardDescription{
+  display: none;
+  font-size: 16px; 
+  margin-bottom: 20px;
+  line-height: 1.4;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.singleKnowMoreButton {
+  /* display: inline-block; */
+  width: fit-content;
+  padding: 8px 20px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.singleKnowMoreButton:hover {
+  background-color: white;
+  color: #171924;
+  transform: translateY(-2px);
+}
+
+/* Conteneur pour les actions (bouton + temps de lecture) */
+.singleCardActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.singleCardReadingTime {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Meta informations */
+.singleCardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0;
+  margin: 0;
+}
+
+.singleCardDate {
+  font-size: 12px;
+}
+
+.singleCardDuration {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.singleCardClock {
+  font-size: 14px;
+  color: white;
+}
+
+.singleDivInfo{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* align-content: center; */
+}
+
+/* États de chargement et d'erreur partagés */
+.loadingContainer, .errorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  padding: 2rem;
+}
+
+/* États pour les contenus précédents */
+.loadingPrevious, .noPreviousContent {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-text);
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.loading, .errorContainer h1 {
+  font-size: 1.5rem;
+  color: var(--color-text);
+}
+
+.errorContainer {
+  flex-direction: column;
+  text-align: center;
+  gap: 1rem;
+}
+
+.backButton {
+  padding: 0.75rem 1.5rem;
+  background: #e8904e;
+  color: var(--color-text);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.backButton:hover {
+  background: #d68040;
+}
+
+/* Styles spécifiques aux reviews */
+.reviewContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: var(--color-text);
+}
+
+.breadcrumb {
+  margin-bottom: 20px;
+}
+
+.breadcrumbLink {
+  color: #e8904e;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.breadcrumbLink:hover {
+  text-decoration: underline;
+}
+
+.reviewArticle {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.reviewHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.reviewImageContainer {
+  width: 100%;
+}
+
+.reviewMainImage {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.reviewHeaderContent {
+  flex: 1;
+}
+
+.reviewTitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: var(--color-text);
+}
+
+.reviewSubtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+}
+
+.reviewMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.metaLabel {
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.metaValue {
+  color: var(--color-text);
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.ratingScore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.scoreNumber {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ratingStars {
+  color: #ffd700;
+  font-size: 16px;
+}
+
+.reviewContent {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reviewExcerpt {
+  font-size: 18px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #e8904e;
+  border-radius: 4px;
+}
+
+.reviewText {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.reviewText h2, .reviewText h3, .reviewText h4 {
+  color: var(--color-text);
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.reviewText p {
+  margin-bottom: 15px;
+}
+
+.reviewActions {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.reviewButton {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 2px solid;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 14px;
+}
+
+.reviewButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.reviewButtonPrimary {
+  background: #e8904e;
+  border-color: #e8904e;
+}
+
+.reviewButtonPrimary:hover {
+  background: #d68040;
+}
+
+.reviewButtonSecondary {
+  border-color: var(--color-text);
+}
+
+.loadingState, .errorState {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-text);
+}
+
+.loadingState p {
+  font-size: 18px;
+}
+
+.errorState h2 {
+  margin-bottom: 20px;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+  .singleMainTitle {
+    font-size: 40px;
+    margin-bottom: 30px;
+  }
+  
+  .singleImage {
+    height: 250px;
+    margin-bottom: 30px;
+  }
+  
+  h2.singleTitle {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+  
+  .singleText {
+    font-size: 18px;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .singlePublishDate {
+    font-size: 17px;
+  }
+  
+  .singleLikesSection, .singleReadingTime {
+    font-size: 17px;
+  }
+  
+  .singlePreviousContentTitle {
+    font-size: 32px;
+    margin-bottom: 35px;
+  }
+  
+  .singleGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .singleCard {
+    height: 250px;
+  }
+  
+  .singleCardImg {
+    height: 100%;
+  }
+  
+  /* .singleCardLink:hover .singleCardImg {
+    transform: scale(1.05);
+  } */
+  
+  .singleCardOverlay {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    height: auto;
+    min-height: 150px;
+  }
+
+  .singleCardCover {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 110px;
+    height: 150px;
+    margin-right: 20px;
+    visibility: visible;
+  }
+
+  .singleCardContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* min-height: 150px; */
+  }
+  
+  .singleCardActions {
+    margin-top: 15px;
+  }
+
+  .singleCardTitle {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .singleCardDescription{
+    visibility: visible;
+    margin-top: 20px;
+  }
+
+  .singleKnowMoreButton {
+    width: 150px;
+  }
+
+  .singleCardMeta {
+    margin-top: auto;
+  }
+
+  .singleCardReadingTime{
+    font-size: 16px;
+  }
+
+  .reviewHeader {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .reviewImageContainer {
+    width: 300px;
+    flex-shrink: 0;
+  }
+
+  .reviewMainImage {
+    height: 200px;
+  }
+
+  .reviewTitle {
+    font-size: 28px;
+  }
+
+  .reviewSubtitle {
+    font-size: 20px;
+  }
+
+  .reviewMeta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .metaItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Large devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+  .singleMainTitle {
+    font-size: 48px;
+    margin-bottom: 40px;
+  }
+  
+  .singleImage {
+    height: 350px;
+    margin-bottom: 40px;
+  }
+  
+  .singleInfo {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+  }
+  
+  .singleContent {
+    max-width: 65%;
+  }
+  
+  h2.singleTitle {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  
+  .singleText {
+    font-size: 18px;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .singleMeta {
+    width: 300px;
+    padding-top: 0;
+    position: sticky;
+    top: 40px;
+    padding-left: 40px;
+  }
+  
+  .singleMeta::before {
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: 0;
+    width: 1px;
+    height: auto;
+  }
+  
+  .singlePublishDate {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .singleLikesSection, .singleReadingTime {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .singleLikeButtonContainer {
+    margin-top: 30px;
+  }
+  
+  .singleHeart, .singleClock {
+    font-size: 20px;
+  }
+  
+  .singlePreviousContentTitle {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+  
+  .singleGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .singleCard {
+    height: 350px;
+  }
+  
+  .singleCardImg {
+    height: 100%;
+  }
+  
+  .singleCardOverlay {
+    padding: 30px;
+  }
+
+  .singleCardCover {
+    width: 130px;
+    height: 180px;
+  }
+  
+  /* .singleCardContent {
+    min-height: 180px;
+  } */
+  
+  .singleCardTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .singleKnowMoreButton {
+    padding: 10px 25px;
+    font-size: 16px;
+    width: 150px;
+  }
+  
+  .singleCardDate {
+    font-size: 14px;
+  }
+  
+  .singleCardClock {
+    font-size: 16px;
+  }
+}
+
+/* Animation Sonic qui court */
+.sonicRunner {
+  position: absolute;
+  top: 2px; /* Position après la bordure */
+  left: 2px; /* Position après la bordure */
+  right: 2px; /* Position avant la bordure droite */
+  height: 48px; /* Hauteur fixe pour éviter les changements sur mobile */
+  pointer-events: none; /* N'interfère pas avec les clics */
+  z-index: 10;
+  border-radius: 23px; /* Même border-radius que le bouton (25px - 2px border) */
+  overflow: hidden; /* Double sécurité pour confiner l'animation */
+  
+  /* Background animé qui apparaît avec Sonic */
+  background-image: var(--sonic-background);
+  background-size: cover; /* Couvre tout le conteneur en gardant les proportions */
+  background-position: center calc(100% + 8px); /* Descend le background de 8px sous le bas */
+  background-repeat: no-repeat;
+  
+  /* Animation d'apparition/disparition du background */
+  animation: sonicBackground 2s ease-in-out forwards;
+}
+
+.sonicGif {
+  position: absolute;
+  top: 50%;
+  left: -40px; /* Commence hors de vue à gauche (plus petit pour rester dans le bouton) */
+  width: 35px; /* Taille réduite pour mieux s'adapter */
+  height: auto;
+  max-height: 80%; /* Limite la hauteur pour éviter le débordement */
+  transform: translateY(-50%);
+  animation: sonicRun 2s ease-in-out forwards;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes sonicRun {
+  0% {
+    left: -40px;
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% + 40px); /* Sort de vue à droite (distance réduite) */
+    opacity: 0.5;
+  }
+}
+
+/* Animation pour le background du stage de Sonic */
+@keyframes sonicBackground {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  15% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  85% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+/* Tails qui court derrière Sonic */
+.tailsGif {
+  position: absolute;
+  top: 50%;
+  left: -100px; /* Plus d'écart avec Sonic */
+  width: 50px; /* Encore plus grand */
+  height: auto;
+  max-height: 95%; /* Encore plus grand */
+  transform: translateY(-50%);
+  animation: tailsRun 2s ease-in-out forwards;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+  z-index: 9; /* Derrière Sonic */
+}
+
+@keyframes tailsRun {
+  0% {
+    left: -100px;
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% + 0px); /* S'arrête juste au bord droit, derrière Sonic */
+    opacity: 0.5;
+  }
+}
+
+/* Knuckles qui court derrière Tails */
+.knucklesGif {
+  position: absolute;
+  top: 50%;
+  left: -120px; /* Commence encore plus loin à gauche */
+  width: 35px; /* Même taille que Sonic et Tails */
+  height: auto;
+  max-height: 80%; /* Même taille que Sonic et Tails */
+  transform: translateY(-50%);
+  animation: knucklesRun 2s ease-in-out forwards;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+  z-index: 8; /* Derrière Tails et Sonic */
+}
+
+@keyframes knucklesRun {
+  0% {
+    left: -120px;
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% - 40px); /* S'arrête encore plus en arrière */
+    opacity: 0.5;
+  }
+}
+
+/* Styles pour les titres dans le contenu */
+.singleContent h1, .singleContent h2, .singleContent h3, .singleContent h4 {
+  color: var(--color-text);
+}
+
+/* Styles pour les messages de partage */
+.shareMessage {
+  margin-top: 8px;
+  color: #4CAF50;
+  font-weight: bold;
+  text-align: center;
+  font-size: 14px;
+  padding: 8px;
+  background-color: rgba(76, 175, 80, 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+/* Styles pour les étoiles de notation */
+.ratingScore {
+  color: var(--rating-color, #ffd700);
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+
+.ratingStars {
+  color: #ffd700;
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+} 
+
+/* Images dans le contenu riche */
+.richTextContent img {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.2rem auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+/* Conteneur pour les images dans le contenu riche */
+.richTextContent {
+  text-align: left;
+}
+
+.richTextContent p {
+  text-align: left;
+}
+
+.richTextContent p:has(img) {
+  text-align: center;
+}
+
+/* Règle spécifique pour les images dans les paragraphes */
+.richTextContent p img {
+  margin: 1.2rem auto;
+}
+
+/* Règles spécifiques pour ImageWithSkeleton dans le contenu riche */
+.richTextContent .image-with-skeleton {
+  max-width: 600px;
+  width: 100%;
+  margin: 1.2rem auto;
+  display: block;
+}
+
+.richTextContent .image-with-skeleton img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Règles pour les paragraphes contenant ImageWithSkeleton */
+.richTextContent p:has(.image-with-skeleton) {
+  text-align: center;
+  margin: 1.2rem auto;
+}
+
+/* Iframes YouTube dans le contenu riche */
+.richTextContent .youtube-video,
+.richTextContent iframe {
+  max-width: 600px;
+  width: 100%;
+  aspect-ratio: 16/9;
+  min-height: 250px;
+  display: block;
+  margin: 1.2rem auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  background: #000;
+}
+
+/* Responsive YouTube wrapper */
+.richTextContent .youtube-video {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+.richTextContent .youtube-video iframe {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  border: 0;
+} 

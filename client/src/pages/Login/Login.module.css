@@ -1,0 +1,303 @@
+.loginContainer {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #191D32;
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+[data-theme='light'] .loginContainer {
+  background: #EEEEEE;
+}
+
+.loginBox {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.loginHeader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.loginTitle {
+  color: #1e3c72;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sonicIcon {
+  font-size: 28px;
+  animation: spin 3s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* .loginSubtitle {
+  color: #666;
+} */
+
+.errorMessage {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.formField {
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #191D32;
+}
+
+.formInput {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.primaryButton {
+  width: 100%;
+  padding: 12px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 24px; /* Augmenté pour plus d'espace sous le bouton principal */
+}
+
+.loginButton {
+  background: #f97316;
+  margin-bottom: 0; /* On gère l'espacement via .primaryButton */
+}
+
+.loginButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.toggleSection {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.toggleButton {
+  width: 100%;
+  background: none;
+  border: 1px solid #ddd;
+  color: #666;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.toggleButton:hover {
+  background: #f8fafc;
+  color: #333;
+  border-color: #bbb;
+}
+
+.registerButton {
+  background: #10b981;
+  margin-bottom: 0;
+}
+
+.registerButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.devSection {
+  text-align: center;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 20px;
+}
+
+.devText {
+  color: #666;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.adminButton {
+  padding: 8px 16px;
+  background: #8b5cf6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.adminButton:disabled {
+  cursor: not-allowed;
+}
+
+.infoBox {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.infoTitle {
+  color: #1e3c72;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.infoList {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.forgotPassword {
+  text-align: center;
+  margin-top: 16px; /* Ajouté pour un espace symétrique sous le bouton principal */
+  margin-bottom: 0;
+}
+
+.forgotPasswordLink {
+  background: none;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px;
+  transition: color 0.3s ease;
+}
+
+.forgotPasswordLink:hover {
+  color: #0056b3;
+} 
+
+.formTransition {
+  transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+.form-enter {
+  opacity: 0;
+  transform: translateX(40px);
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.form-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  position: static;
+}
+
+.form-leave {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  position: static;
+}
+
+.form-leave-active {
+  opacity: 0;
+  transform: translateX(-40px);
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+/* Conteneur des formulaires avec transition de hauteur */
+.formContainer {
+  position: relative;
+  transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
+  overflow: hidden;
+}
+
+/* Hauteurs spécifiques pour chaque formulaire */
+.formContainer.signin {
+  height: 280px; /* Hauteur du formulaire de connexion */
+}
+
+.formContainer.signup {
+  transform: translateX(0);
+  height: 380px; /* Hauteur du formulaire d'inscription avec case à cocher */
+} 
+
+/* Styles pour la case à cocher des conditions générales */
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.checkbox {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checkboxText {
+  color: #191D32;
+  font-weight: 400;
+}
+
+.termsLink {
+  color: #f97316;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.termsLink:hover {
+  color: #ea580c;
+  text-decoration: underline;
+}
+
+[data-theme='light'] .checkboxText {
+  color: #374151;
+}
+
+[data-theme='light'] .termsLink {
+  color: #f97316;
+}
+
+[data-theme='light'] .termsLink:hover {
+  color: #ea580c;
+} 

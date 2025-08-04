@@ -1,0 +1,104 @@
+/* ArticlesSection.css */
+.articles-container-index {
+  margin: 0 auto;
+  margin-bottom: 5%;
+  padding: 0 5%;
+  min-height: 400px; /* Hauteur minimale pour éviter les sauts */
+}
+
+.articles-title-index {
+  margin-bottom: 1.5rem;
+  font-size: 32px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.articles-wrapper {
+  width: 100%;
+  position: relative;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.articles-wrapper.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* États de chargement et d'erreur */
+.loading-state,
+.error-state {
+  text-align: center;
+  padding: 40px 20px;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.error-state .btn {
+  margin-top: 20px;
+}
+
+.no-articles {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Section pour voir tous les articles */
+.see-all-articles {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.see-all-articles.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.see-all-link {
+  color: #FF6B00;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.see-all-link:hover {
+  text-decoration: underline;
+  transform: translateX(5px);
+}
+
+/* Media queries pour tablettes */
+@media (min-width: 768px) {
+  .articles-title-index {
+    font-size: 2.5rem;
+    margin-top: 35px;
+    margin-bottom: 18px;
+  }
+}
+
+/* Media query pour desktop */
+@media (min-width: 1024px) {
+  .articles-wrapper {
+    min-height: 520px;
+  }
+  
+  .articles-container-index {
+    min-height: 400px;
+  }
+}

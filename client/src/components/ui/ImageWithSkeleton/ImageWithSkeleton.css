@@ -1,0 +1,50 @@
+.image-with-skeleton {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+/* Règle spécifique pour les images dans le contenu riche */
+.richTextContent .image-with-skeleton {
+  height: auto;
+  max-width: 600px;
+  margin: 1.2rem auto;
+  display: block;
+}
+
+.image-skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2; */
+}
+
+/* Règle spécifique pour les images dans le contenu riche */
+.richTextContent .skeleton-image {
+  height: auto;
+  object-fit: contain;
+  max-width: 100%;
+}
+
+.skeleton-image.loading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skeleton-image.loaded {
+  opacity: 1;
+  pointer-events: auto;
+} 

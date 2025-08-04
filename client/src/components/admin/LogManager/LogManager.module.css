@@ -1,0 +1,486 @@
+/* Mobile First - Base styles */
+.container {
+  padding: 1rem;
+  margin: 0 auto;
+  border: 1px solid;
+  border-radius: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.header h2 {
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.header p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Statistiques - Mobile First */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.statCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.statCard h3 {
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.statCard p {
+  color: var(--primary);
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Filtres - Mobile First */
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.filterSelect {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  /* background: var(--bg-secondary);
+  color: var(--text); */
+  font-size: 0.9rem;
+  width: 100%;
+  min-height: 44px;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Actions - Mobile First */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.refreshBtn {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--text);
+  min-height: 44px; /* Touch target minimum */
+  background: var(--primary);
+}
+
+.refreshBtn:hover:not(:disabled) {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.refreshBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Liste des logs - Mobile First */
+.logsList {
+  margin-bottom: 1.5rem;
+}
+
+.logsList h3 {
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border: 2px dashed var(--border);
+}
+
+/* Table des logs - Mobile First */
+.logsTable {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  overflow-x: auto; /* Scroll horizontal sur mobile */
+}
+
+.logsTable table {
+  width: 100%;
+  min-width: 600px; /* Largeur minimum pour éviter la compression */
+  border-collapse: collapse;
+}
+
+.logsTable th {
+  background: var(--primary);
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.logsTable td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+  vertical-align: top;
+  word-break: break-word;
+}
+
+.logsTable tr:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.logRow {
+  transition: background-color 0.2s ease;
+}
+
+.logLevel {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.logLevel.info {
+  background: var(--info);
+}
+
+.logLevel.warn {
+  background: var(--warning);
+}
+
+.logLevel.error {
+  background: var(--danger);
+}
+
+.logLevel.debug {
+  background: var(--text-secondary);
+}
+
+.logsTable details {
+  cursor: pointer;
+}
+
+.logsTable summary {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.logsTable pre {
+  background: var(--bg-primary);
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Boutons de téléchargement - Mobile First */
+.downloadBtn {
+  padding: 0.75rem 1rem;
+  background: var(--success);
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  color: var(--text);
+  min-height: 44px; /* Touch target minimum */
+}
+
+.downloadBtn:hover:not(:disabled) {
+  background: var(--success-hover);
+  transform: translateY(-1px);
+}
+
+.downloadBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Informations - Mobile First */
+.info {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+}
+
+.info h3 {
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info li {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  padding-left: 1.25rem;
+  position: relative;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.info li::before {
+  content: '•';
+  color: var(--primary);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* Loading - Mobile First */
+.loading {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Responsive - Mobile First avec breakpoints progressifs */
+
+/* Tablette (768px et plus) */
+@media (min-width: 768px) {
+  .container {
+    padding: 1.5rem;
+    /* max-width: 90%; */
+  }
+  
+  .header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .header p {
+    font-size: 1.1rem;
+  }
+  
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .statCard {
+    padding: 1.25rem;
+  }
+  
+  .statCard h3 {
+    font-size: 1rem;
+  }
+  
+  .statCard p {
+    font-size: 1.4rem;
+  }
+  
+  .filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .filterSelect {
+    min-width: 180px;
+    width: auto;
+  }
+  
+  .actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .cleanupBtn, .refreshBtn, .downloadBtn {
+    min-width: 140px;
+  }
+  
+  .logsList h3 {
+    font-size: 1.2rem;
+  }
+  
+  .info {
+    padding: 1.25rem;
+  }
+  
+  .info h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Desktop (1024px et plus) */
+@media (min-width: 1024px) {
+  .container {
+    padding: 2rem;
+    /* max-width: 1200px; */
+  }
+  
+  .header h2 {
+    font-size: 2rem;
+  }
+  
+  .header p {
+    font-size: 1.2rem;
+  }
+  
+  .stats {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .statCard {
+    padding: 1.5rem;
+  }
+  
+  .statCard h3 {
+    font-size: 1.1rem;
+  }
+  
+  .statCard p {
+    font-size: 1.6rem;
+  }
+  
+  .filters {
+    gap: 1.5rem;
+  }
+  
+  .filterSelect {
+    min-width: 200px;
+  }
+  
+  .actions {
+    gap: 1.5rem;
+  }
+  
+  .cleanupBtn, .refreshBtn, .downloadBtn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-width: 160px;
+  }
+  
+  .logsList h3 {
+    font-size: 1.3rem;
+  }
+  
+  .logsTable th {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .logsTable td {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .logLevel {
+    font-size: 0.8rem;
+  }
+  
+  .info {
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .info h3 {
+    font-size: 1.2rem;
+  }
+  
+  .info li {
+    font-size: 1rem;
+  }
+  
+  .loading {
+    padding: 3rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* Grand écran (1440px et plus) */
+@media (min-width: 1440px) {
+  .container {
+    padding: 2.5rem;
+  }
+  
+  .header h2 {
+    font-size: 2.2rem;
+  }
+  
+  .stats {
+    gap: 2rem;
+  }
+  
+  .statCard {
+    padding: 2rem;
+  }
+  
+  .statCard p {
+    font-size: 1.8rem;
+  }
+} 

@@ -1,0 +1,438 @@
+/* ======================================== Video Page CSS - Identique au WordPress ======================================== */
+
+.globalContainer {
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* .main {
+  margin-bottom: 25px;
+} */
+
+.main h2 {
+  font-size: 32px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.sonicIcon {
+  font-size: 28px;
+  animation: spin 3s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.main p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: 0 auto;
+}
+
+.banner {
+  border-radius: 8px;
+  text-align: center;
+  padding: 3% 0;
+}
+
+.banner img {
+  max-width: 100%;
+}
+
+.segarowLogo {
+  width: 100%;
+  aspect-ratio: 5/1;
+  height: auto;
+  border-radius: 15px;
+  object-fit: contain;
+  display: block;
+  background: #fff;
+}
+
+.ctaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 2px solid;
+}
+
+.btnPrimary {
+  background: #e8904e;
+  border-color: #e8904e;
+  color: var(--color-text);
+}
+
+.btnPrimary:hover {
+  background: #d68040;
+  border-color: #d68040;
+  transform: translateY(-2px);
+}
+
+.liveSection {
+  margin: 30px 0;
+}
+
+.liveSection h2 {
+  font-size: 32px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  color: var(--color-text);
+  text-align: center;
+}
+
+.featuredLive {
+  margin: 30px 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  /* border: 1px solid rgba(255, 255, 255, 0.1); */
+  border: 1px solid var(--color-text);
+}
+
+.featuredLive h3 {
+  margin: 15px 0 10px 0;
+  font-size: 18px;
+  color: var(--color-text);
+}
+
+.featuredLive p {
+  /* color: rgba(255, 255, 255, 0.7); */
+  font-size: 14px;
+}
+
+.videoContainer {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* Ratio 16:9 */
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.videoContainer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 15px;
+}
+
+.videoCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-text);
+}
+
+.videoInfo {
+  margin-top: 15px;
+}
+
+.videoInfo h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.videoInfo p {
+  font-size: 14px;
+  /* color: rgba(255, 255, 255, 0.7); */
+  margin-bottom: 10px;
+}
+
+.videoLink {
+  color: #ff8c42;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.videoLink::before {
+  content: "→";
+  margin-right: 5px;
+}
+
+.videoLink:hover {
+  color: #e8904e;
+}
+
+.loading, .error, .noContent {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  text-align: center;
+}
+
+.error {
+  color: #ff6b6b;
+}
+
+/* Section réseaux sociaux - IDENTIQUE au WordPress */
+.socialSection {
+  border-radius: 20px;
+  background: var(--social-bg);
+  padding: 30px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin: 30px 0;
+  color: var(--color-text);
+}
+
+.socialSection h2 {
+  margin-bottom: inherit;
+  text-align: center;
+  margin-top: auto;
+  font-size: 32px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.socialPlatforms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+}
+
+.socialPlatform {
+  flex: 1;
+  text-align: center;
+  padding: 0 10px;
+  position: relative;
+}
+
+.socialPlatform h3 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: var(--color-text);
+}
+
+.socialPlatform:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background-color: var(--color-text);
+}
+
+.socialIcon {
+  display: inline-block;
+  margin-left: 5px;
+  width: 24px;
+  height: 24px;
+}
+
+.socialPlatform p {
+  margin: 10px 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-text);
+}
+
+.socialLink {
+  color: #ff8c42;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.socialLink::before {
+  content: "→";
+  margin-right: 5px;
+}
+
+.socialLink:hover {
+  color: #e8904e;
+}
+
+/* Media Queries - IDENTIQUES au WordPress */
+@media (min-width: 481px) {
+  .globalContainer {
+    padding: 0 5%;
+  }
+  
+  .segarowLogo {
+    font-size: 30px;
+  }
+  
+  .ctaContainer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .main h2 {
+    font-size: 2.5rem;
+    margin-top: 35px;
+    margin-bottom: 18px;
+  }
+
+  .liveSection h2 {
+    font-size: 2.5rem;
+    margin-top: 35px;
+    margin-bottom: 18px;
+  }
+
+  .socialSection h2 {
+    font-size: 2.5rem;
+    margin-top: 10px;
+    margin-bottom: 35px;
+  }
+}
+
+@media (min-width: 769px) {
+  .globalContainer {
+    padding: 0 5%;
+  }
+  
+  .segarowLogo {
+    font-size: 36px;
+  }
+  
+  .grid {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .videoCard {
+    flex: 1;
+  }
+
+  .featuredLive {
+    max-width: 800px;
+    margin: 30px auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .socialPlatforms {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .socialPlatform:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background-color: var(--color-text);
+    top: auto;
+    right: auto;
+  }
+
+  /* Pour le featured live - ratio 16/9 sur mobile */
+  .featuredLive .videoContainer {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .featuredLive .videoContainer iframe {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+}
+
+@media (min-width: 1025px) {
+  .liveSection {
+    margin: 40px 0;
+  }
+}
+
+body[data-theme='light'] .videoContainer,
+body[data-theme='light'] .videoTitle,
+body[data-theme='light'] .videoExcerpt,
+body[data-theme='light'] .videoContent,
+body[data-theme='light'] h1,
+body[data-theme='light'] h2,
+body[data-theme='light'] h3,
+body[data-theme='light'] h4,
+body[data-theme='light'] p,
+body[data-theme='light'] span {
+  color: #000 !important;
+}
+
+body[data-theme='light'] .videoContainer, body[data-theme='light'] .videoContainer * {
+  color: #000 !important;
+}
+
+/* Remplacement global */
+:root .videoContainer, .videoTitle, .videoExcerpt, .videoContent {
+  color: var(--color-text);
+}
+
+/* Correction des titres */
+.Video_main_SfmEL h2 {
+  color: var(--color-text);
+}
+
+body[data-theme='light'] .socialSection,
+body[data-theme='light'] .socialSection *,
+body[data-theme='light'] .socialSection h2,
+body[data-theme='light'] .socialSection h3,
+body[data-theme='light'] .socialSection p,
+body[data-theme='light'] .socialSection a,
+body[data-theme='light'] .socialSection .socialPlatform:not(:last-child)::after {
+  color: #191D32 !important;
+  border-color: #191D32 !important;
+}
+body[data-theme='light'] .socialLink {
+  border: 2px solid var(--color-text) !important;
+  border-radius: 12px;
+  padding: 8px 16px;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s;
+}

@@ -1,0 +1,45 @@
+/* Styles pour les notifications toast */
+
+/* Style de base pour tous les toasts */
+.toast-base {
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid;
+}
+
+/* Success - Fond vert */
+.toast-success {
+  background: #4CAF50 !important;
+  color: white !important;
+  border-color: #45a049 !important;
+}
+
+/* Error - Fond rouge */
+.toast-error {
+  background: #f44336 !important;
+  color: white !important;
+  border-color: #da190b !important;
+}
+
+/* Warning - Fond orange */
+.toast-warning {
+  background: #ff9800 !important;
+  color: white !important;
+  border-color: #f57c00 !important;
+}
+
+/* Info - Fond bleu */
+.toast-info {
+  background: #2196F3 !important;
+  color: white !important;
+  border-color: #1976D2 !important;
+}
+
+/* Style par défaut (pour les toasts sans type spécifique) */
+.toast-default {
+  background: var(--bg-secondary);
+  color: var(--text);
+  border-color: var(--border);
+} 

@@ -1,0 +1,379 @@
+/* ======================================== Reviews.jsx ======================================== */
+
+/* Base styles (mobile first) */
+.reviewContainer {
+  margin: 0 auto 5%;
+  padding: 0 5%;
+}
+
+.reviewContainer h2 {
+  color: var(--color-text);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+/* États de chargement et d'erreur */
+.noReviews {
+  text-align: center;
+  padding: 40px 20px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Résultats de recherche */
+.searchResults {
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: rgba(232, 144, 78, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(232, 144, 78, 0.3);
+}
+
+.searchResults p {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.reviewCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 5% 0;
+  border-bottom: 1px solid var(--color-text);
+}
+
+.reviewCard:last-child {
+  border-bottom: none;
+}
+
+.reviewCardLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+.reviewGameImage {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  aspect-ratio: 16/9;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.reviewGameImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviewContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--color-text);
+}
+
+.reviewGameTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  color: var(--color-text);
+}
+
+.reviewGameGenre {
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+  font-size: 1rem;
+  margin: 0 0 15px 0;
+  color: var(--color-text);
+}
+
+/* .reviewGameGenre span {
+  font-weight: bold;
+} */
+
+.reviewText {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+  color: var(--color-text);
+}
+
+.reviewReadMoreBtn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #EA8947;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  width: fit-content;
+  margin: 0 auto;
+  transition: background-color 0.3s;
+}
+
+.reviewReadMoreBtn:hover {
+  background-color: #FF7030;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.pagination ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination button {
+  background: #EA8947;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+  background: #FF7030;
+}
+
+.pagination button.current {
+  background: #FF7030;
+  font-weight: bold;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .reviewContainer h2 {
+    font-size: 2.5rem;
+  }
+
+  .reviewCard {
+    flex-direction: row;
+    text-align: left;
+    align-items: stretch;
+  }
+
+  .reviewCardLink {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  
+  .reviewGameImage {
+    width: 40%;
+    max-width: none;
+    height: 250px;
+    margin-bottom: 0;
+  }
+  
+  .reviewContent {
+    padding-left: 4%;
+  }
+  
+  .reviewGameTitle {
+    font-size: 1.75rem;
+  }
+  
+  .reviewGameGenre {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 1.1rem;
+    margin: 0 0 18px 0;
+  }
+  
+  .reviewText {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin: 0 0 25px 0;
+  }
+  
+  .reviewReadMoreBtn {
+    margin: 0;
+    padding: 11px 22px;
+    font-size: 1rem;
+  }
+}
+
+/* Large devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+  .reviewContainer h2 {
+    margin-bottom: 40px;
+  }
+
+  .reviewCard {
+    padding: 3% 0;
+  }
+  
+  .reviewGameImage {
+    height: 300px;
+    width: 35%;
+  }
+  
+  .reviewContent {
+    padding-left: 5%;
+  }
+  
+  .reviewGameTitle {
+    font-size: 2rem;
+    margin: 0 0 10px 0;
+  }
+  
+  .reviewGameGenre {
+    font-size: 1.2rem;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .reviewText {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 0 30px 0;
+  }
+  
+  .reviewReadMoreBtn {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1280px and up) */
+@media (min-width: 1280px) {
+  .reviewGameImage {
+    width: 30%;
+  }
+  
+  .reviewContent {
+    padding-left: 5%;
+  }
+}
+
+/* Formulaire de création de review */
+.createReviewForm {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.createReviewForm h3 {
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formGroup label {
+  display: block;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submitBtn {
+  background-color: #EA8947;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.submitBtn:hover {
+  background-color: #FF7030;
+}
+
+.submitBtn:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+/* Remplacement global */
+:root .reviewsContainer, .reviewTitle, .reviewExcerpt, .reviewContent {
+  color: var(--color-text);
+}
+
+/* Correction des titres */
+.Reviews_main_XXXXX h2, .Reviews_main_XXXXX h1, .Reviews_main_XXXXX h3, .Reviews_main_XXXXX h4 {
+  color: var(--color-text);
+} 
+
+.platformBadge {
+  background: #e3f2fd;
+  color: #2196f3;
+  padding: 0.25rem 0.5rem;
+  border-radius: 15px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 4px;
+}
+.platformLogo {
+  margin-right: 0.4em;
+  vertical-align: middle;
+} 
+
+.genreBadge {
+  background: #e8f5e8;
+  color: #27ae60;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 4px;
+} 

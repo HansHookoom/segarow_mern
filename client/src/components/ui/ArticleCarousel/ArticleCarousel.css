@@ -1,0 +1,242 @@
+/* ArticleCarousel.css */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  display: block; /* Visible par défaut en mobile */
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  background-color: #171924;
+  border-radius: 8px;
+  border: 1px solid white;
+}
+
+.carousel-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  touch-action: pan-y;
+  will-change: transform;
+  height: 100%;
+}
+
+.carousel-track.transitioning {
+  pointer-events: none;
+}
+
+.carousel-item {
+  flex: 0 0 100%;
+  padding: 0 5px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+/* Carte d'article dans le carrousel */
+.article-card-carousel {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 280px;
+  background-color: #171924;
+}
+
+/* Image de fond de l'article */
+.article-bg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-decoration: none;
+  position: relative;
+  background-color: #171924;
+}
+
+.article-image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.article-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+  transform: scale(1.01);
+  background-color: #171924;
+}
+
+/* Contenu de l'article */
+.article-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  z-index: 1;
+}
+
+/* Titre de l'article */
+.article-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Description de l'article */
+.article-description {
+  display: none;
+  font-size: 14px;
+  margin-bottom: 15px;
+  line-height: 1.4;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Bouton pour voir l'article */
+.know-more-button {
+  /* display: inline-block; */
+  width: fit-content;
+  padding: 6px 15px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.know-more-button:hover {
+  background-color: white;
+  color: #171924;
+  transform: translateY(-2px);
+}
+
+/* Actions de l'article (bouton + temps de lecture) */
+.article-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.article-reading-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Contrôles du carrousel */
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
+  padding: 0 10px;
+}
+
+.carousel-button {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  color: #171924;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  transform: translateZ(0);
+}
+
+.carousel-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.carousel-button:not(:disabled):hover {
+  background-color: #FF6B00;
+  color: white;
+  transform: scale(1.1) translateZ(0);
+}
+
+/* Indicateurs du carrousel */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translateZ(0);
+}
+
+.indicator.active {
+  background-color: #FF6B00;
+  transform: scale(1.2) translateZ(0);
+}
+
+.indicator:hover {
+  background-color: #FF6B00;
+  opacity: 0.7;
+}
+
+/* Hover effects */
+.article-bg:hover .article-image {
+  transform: scale(1.05);
+}
+
+/* Media query pour tablettes */
+@media (min-width: 768px) {
+  .article-card-carousel {
+    height: 320px;
+  }
+  
+  .article-title {
+    font-size: 20px;
+  }
+  
+  .article-description {
+    font-size: 15px;
+  }
+}
+
+/* Media query pour desktop - masquer le carrousel */
+@media (min-width: 1024px) {
+  .carousel-container {
+    display: none;
+  }
+}

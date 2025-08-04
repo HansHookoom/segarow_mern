@@ -1,0 +1,630 @@
+/* ======================================== HEADER ======================================== */
+.siteHeader {
+  background-image:
+    radial-gradient(ellipse at top left, rgba(133,189,227,1), transparent 70%),
+    linear-gradient(to bottom right, #1a1a2e, #191d32);
+  color: var(--color-text);
+  position: relative;
+  overflow: visible;
+  width: 100%;
+}
+
+[data-theme='light'] .siteHeader {
+  background: var(--header-bg);
+  color: var(--color-text);
+}
+
+/* Navigation */
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  background: transparent;
+}
+
+.logoMenuContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 5%;
+}
+
+.logo {
+  height: 40px;
+}
+
+.logo img {
+  height: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.logo img:hover {
+  opacity: 0.9;
+}
+
+/* Menu burger */
+.hamburgerMenu {
+  display: block;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 10px;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.hamburgerMenu:hover {
+  transform: scale(1.1);
+}
+
+.hamburgerMenu .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: var(--color-text);
+  transition: all 0.3s ease;
+}
+
+.hamburgerMenu.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburgerMenu.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerMenu.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+[data-theme='light'] .hamburgerMenu .bar {
+  background-color: var(--color-text);
+}
+
+/* Menu principal */
+.mainMenu {
+  position: fixed;
+  gap: 5px;
+  top: 80px;
+  left: 0;
+  right: 0;
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+  text-align: center;
+  transform: translateX(-100%);
+  box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+  padding: 20px 0 150px 0;
+  z-index: 9999;
+  margin: 0;
+  list-style: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Transition seulement quand le menu est interactif (pas lors des media queries) */
+.mainMenu:not(.noTransition) {
+  transition: transform 0.3s ease;
+}
+
+/* Classe pour désactiver les transitions temporairement */
+.noTransition {
+  transition: none;
+}
+
+.mainMenu.active {
+  transform: translateX(0);
+}
+
+.mainMenu li {
+  margin: 15px 0;
+  position: relative;
+}
+
+.mainMenu li::after {
+  display: none;
+}
+
+.mainMenu a {
+  color: var(--color-text);
+  text-decoration: none;
+  /* font-size: 18px; */
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 14px 28px;
+  border-radius: 10px;
+  display: inline-block;
+  background: none;
+  border: 2px solid transparent;
+}
+
+.mainMenu a:hover {
+  /* color: var(--color-text); */
+  background-color: rgba(242, 170, 121, 0.08);
+  border: 2px solid var(--color-primary);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.mainMenu a.activeLink {
+  background-color: rgba(242, 170, 121, 0.18);
+  border: 2px solid var(--color-primary);
+  color: var(--color-text);
+  transform: scale(1.07);
+  box-shadow: 0 4px 12px rgba(242, 170, 121, 0.18);
+}
+
+[data-theme='light'] .mainMenu a.activeLink,
+[data-theme='light'] .mainMenu a:hover {
+  color: #191D32;
+  /* border: 2px solid var(--color-primary); */
+  font-weight: normal;
+}
+[data-theme='dark'] .mainMenu a.activeLink,
+[data-theme='dark'] .mainMenu a:hover {
+  /* color: #fff; */
+  /* border: 2px solid var(--color-primary); */
+  font-weight: normal;
+}
+
+/* Menu utilisateur avec dropdown */
+.menuItem {
+  position: relative;
+}
+
+.userDropdown {
+  position: relative;
+}
+
+/* Styles de base (mobile-first) */
+.userButton {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #333333;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  min-width: auto;
+  width: 100%;
+  margin: 10px 0;
+  /* justify-content: space-between; */
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userButton:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dropdownArrow {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.dropdownArrow.open {
+  transform: rotate(180deg);
+}
+
+.userDropdownMenu {
+  position: relative;
+  top: 100%;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 8px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* Styles de base pour tous les éléments du dropdown */
+.userDropdownMenu .dropdownItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 16px;
+  color: #333333;
+  text-decoration: none;
+  font-weight: 400;
+  font-family: inherit;
+  border: none;
+  border-radius: 0;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  line-height: 1.2;
+  white-space: nowrap;
+  letter-spacing: normal;
+  margin: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+.userDropdownMenu .dropdownItem:hover,
+.userDropdownMenu .dropdownItem.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ea8947;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  transform: none;
+}
+[data-theme='light'] .userDropdownMenu .dropdownItem:hover,
+[data-theme='light'] .userDropdownMenu .dropdownItem.active {
+  background: #f4f6fa;
+  color: #191D32;
+  transform: none;
+}
+
+/* Reset spécifique pour les boutons dans le dropdown */
+.userDropdownMenu button.dropdownItem {
+  font-size: 16px;
+  letter-spacing: inherit;
+}
+
+/* Reset spécifique pour les liens dans le dropdown */
+.userDropdownMenu a.dropdownItem {
+  text-transform: none;
+}
+
+/* Barre de recherche */
+.searchBar {
+  display: none; /* TODO : créer une recherche de posts */
+  background-color: #ffffff;
+  border-radius: 30px;
+  padding: 8px 20px;
+  align-items: center;
+  width: 80%;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.searchBar:focus-within {
+  box-shadow: 0 0 0 2px rgba(242, 170, 121, 0.5);
+}
+
+.searchBar input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 5px;
+  outline: none;
+  font-size: 14px;
+}
+
+.searchBar input::placeholder {
+  color: #999;
+}
+
+.searchIcon {
+  margin-right: 10px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+/* Desktop styles pour le dropdown utilisateur */
+@media (min-width: 1024px) {
+  .userButton {
+    background: #ffffff;
+    color: #333333;
+    min-width: auto;
+    width: 180px;
+    margin: 0;
+  }
+  
+  .userDropdownMenu {
+    position: absolute;
+    background: rgba(25, 29, 50, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 160px;
+    width: auto;
+    margin-top: 8px;
+  }
+  
+  .userDropdownMenu .dropdownItem {
+    color: #ffffff;
+    justify-content: flex-start;
+  }
+  
+  .userDropdownMenu .dropdownItem:hover,
+  .userDropdownMenu .dropdownItem.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f0f0f0;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hamburgerMenu {
+    display: none;
+  }
+
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 5%;
+    margin: 0 auto;
+  }
+  
+  /* Cacher le container mobile en desktop */
+  .logoMenuContainer {
+    display: contents;
+  }
+  
+  /* Logo en desktop */
+  .logo {
+    flex: 0 0 auto;
+    height: 40px;
+  }
+  
+  .logo img {
+    height: 40px;
+    width: auto;
+  }
+  
+  /* Menu principal en desktop */
+  .mainMenu {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: transparent;
+    box-shadow: none;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin-left: auto;
+    gap: 30px;
+    transform: none;
+    transition: none;
+  }
+  
+  .mainMenu li {
+    margin: 0;
+    position: relative;
+  }
+  
+  /* Séparateurs entre les éléments du menu */
+  .mainMenu li::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .mainMenu li:last-child::after {
+    display: none;
+  }
+  
+  /* Style des liens du menu en desktop */
+  .mainMenu a {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 0;
+    white-space: nowrap;
+  }
+
+  .searchBar {
+    max-width: 400px;
+    display: flex;
+  }
+
+  /* Style renforcé pour lien actif en desktop */
+  .mainMenu a.activeLink {
+    transform: scale(1.1);
+    font-size: 18px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(242, 170, 121, 0.5);
+  }
+
+  .themeToggleBtn {
+    vertical-align: middle;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .themeIconWrapper {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-theme='light'] .mainMenu li::after {
+    background-color: var(--color-text);
+    opacity: 0.3;
+  }
+}
+
+.themeToggleBtn {
+  background: none;
+  border: none;
+  font-size: 1.7rem;
+  margin-left: 10px;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: color 0.2s;
+}
+.themeToggleBtn:hover {
+  color: var(--color-link-hover);
+}
+
+.themeIconWrapper {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.themeIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  vertical-align: middle;
+  transition: none;
+  pointer-events: none;
+}
+
+/* Soleil visible */
+.sunVisible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+  transition: opacity 0.5s, transform 0.7s cubic-bezier(0.4,1.2,0.6,1);
+  /* z-index: 2; */
+}
+/* Soleil caché */
+.sunHidden {
+  opacity: 0;
+  transform: translate(-40px, 40px) scale(0.5);
+  transition: opacity 0.5s, transform 0.7s cubic-bezier(0.4,1.2,0.6,1);
+  /* z-index: 1; */
+}
+/* Soleil sort vers bas droite */
+.sunExit {
+  opacity: 0;
+  transform: translate(60px, 60px) scale(0.3);
+  transition: opacity 0.5s, transform 0.7s cubic-bezier(0.4,1.2,0.6,1);
+  /* z-index: 2; */
+}
+/* Soleil entre depuis bas gauche (invisible) */
+.sunEnter {
+  opacity: 0;
+  transform: translate(-60px, 60px) scale(0.3);
+  transition: none;
+  /* z-index: 1; */
+}
+
+/* Lune visible */
+.moonVisible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+  transition: opacity 0.5s, transform 0.7s cubic-bezier(0.4,1.2,0.6,1);
+  /* z-index: 2; */
+}
+/* Lune cachée */
+.moonHidden {
+  opacity: 0;
+  transform: translate(40px, 40px) scale(0.5);
+  transition: opacity 0.5s, transform 0.7s cubic-bezier(0.4,1.2,0.6,1);
+  /* z-index: 1; */
+}
+/* Lune sort vers bas droite */
+.moonExit {
+  opacity: 0;
+  transform: translate(60px, 60px) scale(0.3);
+  transition: opacity 0.5s, transform 0.7s cubic-bezier(0.4,1.2,0.6,1);
+  /* z-index: 2; */
+}
+/* Lune entre depuis bas gauche (invisible) */
+.moonEnter {
+  opacity: 0;
+  transform: translate(-60px, 60px) scale(0.3);
+  transition: none;
+  /* z-index: 1; */
+}
+
+.themeToggleMobile {
+  display: inline-block;
+}
+.themeToggleDesktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .themeToggleMobile {
+    display: none;
+  }
+  .themeToggleDesktop {
+    display: inline-block;
+  }
+}
+
+/* Styles de base pour mobile */
+.mainMenu li {
+  margin: 6px 0;
+}
+.mainMenu a {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.langToggleBtn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.langToggleBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  width: 48px;
+  height: 40px;
+  display: block;
+  box-shadow: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.4,0,0.2,1);
+}
+.langToggleBtn:hover {
+  transform: scale(1.08);
+}
+
+.langFlagWrapper {
+  display: inline-block;
+  perspective: 400px;
+  vertical-align: middle;
+}
+
+.langFlag {
+  display: block;
+  width: 60px;
+  height: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(.4,2,.6,1), opacity 0.3s;
+  backface-visibility: hidden;
+}
+
+.langFlag-flip {
+  transform: rotateY(180deg);
+  opacity: 0;
+}

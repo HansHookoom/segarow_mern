@@ -1,0 +1,297 @@
+/* Overlay pour bloquer l'arrière-plan */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  backdrop-filter: blur(2px);
+}
+
+.imageManager {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  padding-top: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  margin: 60px auto;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10100; /* Plus haut que la navbar (9999) */
+  max-height: calc(100vh - 120px); /* Limiter la hauteur */
+  max-width: 90vw;
+  width: 1200px;
+  overflow-y: auto; /* Scroll interne seulement */
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: left;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  padding-right: 60px; /* Espace pour le bouton de fermeture */
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.header h3 {
+  color: #191D32;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.uploadSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fileInput {
+  display: none;
+}
+
+.uploadButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.uploadButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.uploadButton:active {
+  transform: translateY(0);
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background: #c82333;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.error {
+  background: #fee;
+  color: #c33;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #fcc;
+}
+
+.success {
+  background: #efe;
+  color: #363;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #cfc;
+}
+
+.loading {
+  padding: 20px;
+}
+
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.skeletonCard {
+  background: #f8f9fa;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.noImages {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+  font-size: 1.1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 2px dashed #ddd;
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.imageCard {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.imageCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.imageCard.selected {
+  border-color: #667eea;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.imageCard:hover .image {
+  transform: scale(1.05);
+}
+
+.selectOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(102, 126, 234, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.selectOverlay span {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.imageWrapper:hover .selectOverlay {
+  opacity: 1;
+}
+
+.imageInfo {
+  padding: 16px;
+}
+
+.imageName {
+  font-weight: 600;
+  color: #191D32;
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.imageSize {
+  color: #666;
+  font-size: 0.85rem;
+  margin: 0 0 12px 0;
+}
+
+.imageActions {
+  display: flex;
+  gap: 8px;
+}
+
+.deleteButton {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+.deleteButton:hover {
+  background: #ffcdd2;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (min-width: 769px) {
+  .imageManager {
+    padding: 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .uploadSection {
+    justify-content: center;
+  }
+
+  .imageGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (min-width: 481px) {
+  
+  .imageWrapper {
+    height: 180px;
+  }
+} 

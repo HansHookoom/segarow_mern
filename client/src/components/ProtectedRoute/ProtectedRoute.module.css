@@ -1,0 +1,41 @@
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  color: #666;
+}
+
+.accessDeniedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  text-align: center;
+  color: #666;
+}
+
+.accessDeniedTitle {
+  margin-bottom: 1rem;
+}
+
+.accessDeniedText {
+  margin-bottom: 1.5rem;
+}
+
+.backButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #f97316;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.backButton:hover {
+  background: #ea6b0a;
+} 

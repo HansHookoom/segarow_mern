@@ -1,0 +1,633 @@
+{
+  "heroSection": {
+    "title": "Bienvenue sur SEGAROW !",
+    "description": "Un max de Sonic, un max de SEGA, dans le fun et la bonne humeur",
+    "heroTitle": "Retrouve toutes les dernières actus de l'univers SEGA !",
+    "articlesBtn": "Voir les articles",
+    "youtubeBtn": "Découvrir la chaîne"
+  },
+  "articlesSection": {
+    "title": "Nos derniers articles",
+    "loading": "Chargement des articles...",
+    "error": "Erreur",
+    "retry": "Réessayer",
+    "none": "Aucun article disponible pour le moment.",
+    "seeAll": "Voir tous les articles",
+    "loadingTitle": "Chargement des articles...",
+    "errorTitle": "Erreur lors du chargement des articles.",
+    "noArticlesText": "Aucun article disponible pour le moment.",
+    "seeAllLink": "→ Voir tous les articles"
+  },
+  "videoSection": {
+    "title": "Nos dernières vidéos",
+    "livesSectionTitle": "Nos dernières rediffusions",
+    "livesSectionDesc": "Retrouvez Azurios, Louis et Xela régulièrement en live sur les chaînes YouTube et Twitch !",
+    "loading": "Chargement des vidéos...",
+    "noLive": "Aucune rediffusion disponible",
+    "livePrefix": "SEGAROW en LIVE -",
+    "liveDesc": "Venez découvrir notre dernier live pour passer un super moment en notre compagnie !",
+    "cta": "Découvrir la chaîne youtube",
+    "noVideo": "Aucune vidéo disponible",
+    "error": "Erreur",
+    "retry": "Réessayer"
+  },
+  "menu": {
+    "news": "Articles",
+    "reviews": "Reviews",
+    "videos": "Vidéo",
+    "about": "Qui sommes-nous ?",
+    "admin": "Admin",
+    "account": "Compte",
+    "logout": "Déconnexion",
+    "connect": "Connexion"
+  },
+  "theme": {
+    "toggle": "Changer de thème"
+  },
+  "lang": {
+    "toggle": "Changer de langue"
+  },
+  "news": {
+    "title": "Toutes les dernières actualités !",
+    "none": "Aucun article trouvé.",
+    "readMore": "Voir l'article",
+    "writtenOn": "Rédigé le {{date}}"
+  },
+  "search": {
+    "placeholder": "Rechercher un article...",
+    "articlesPlaceholder": "Rechercher dans les articles...",
+    "reviewsPlaceholder": "Rechercher dans les reviews...",
+    "usersPlaceholder": "Rechercher un utilisateur...",
+    "ariaLabel": "Rechercher des articles",
+    "clear": "Effacer la recherche",
+    "submit": "Rechercher",
+    "noResults": "Aucun résultat trouvé pour votre recherche",
+    "resultsCount": "{{count}} résultat(s) trouvé(s)"
+  },
+  "reviews": {
+    "title": "Tous les avis des dernières sorties !",
+    "loading": "Chargement des reviews...",
+    "error": "Erreur lors du chargement des reviews.",
+    "none": "Aucune review trouvée.",
+    "genre": "Genre : ",
+    "console": "Console : ",
+    "readMore": "En savoir plus",
+    "viewReview": "Voir la review"
+  },
+  "login": {
+    "title": "Connexion SEGAROW",
+    "sessionExpired": "Votre session a expiré suite à une inactivité. Veuillez vous reconnecter.",
+    "email": "Email",
+    "emailPlaceholder": "votre@email.com",
+    "password": "Mot de passe",
+    "passwordPlaceholder": "••••••••",
+    "username": "Pseudonyme",
+    "usernamePlaceholder": "Votre pseudonyme (max 20 caractères)",
+    "loginBtn": "Se connecter",
+    "registerBtn": "Créer un compte",
+    "loading": "Connexion...",
+    "loadingRegister": "Création...",
+    "noAccount": "Pas de compte ? S'inscrire",
+    "alreadyHaveAccount": "Déjà un compte ? Se connecter",
+    "forgotPassword": "Mot de passe oublié ?",
+    "forgotPasswordTitle": "Réinitialisation du mot de passe",
+    "forgotPasswordDesc": "Entrez votre adresse email pour recevoir un lien de réinitialisation",
+    "sendResetLink": "Envoyer le lien",
+    "sendingResetLink": "Envoi...",
+    "resetLinkSent": "Un email de réinitialisation a été envoyé à votre adresse",
+    "backToLogin": "Retour à la connexion",
+    "passwordTooShort": "Le mot de passe doit contenir au moins 6 caractères.",
+    "usernameTooShort": "Le pseudonyme doit contenir au moins 2 caractères.",
+    "fillAllFields": "Veuillez remplir tous les champs",
+    "invalidCredentials": "Email ou mot de passe incorrect",
+    "welcome": "Bienvenue {{user}} ! 🎮",
+    "goodbye": "À bientôt {{user}} ! 👋",
+    "tokenRefreshed": "Session renouvelée avec succès ! 🔄",
+    "acceptTerms": "J'accepte les",
+    "termsOfService": "conditions générales",
+    "termsRequired": "Vous devez accepter les conditions générales pour créer un compte"
+  },
+  "video": {
+    "title": "Tout l'univers disponible sur Youtube !",
+    "welcome": "Bienvenue sur la chaîne SEGAROW 🌀",
+    "description1": "Un max de Sonic, un max de SEGA, dans le fun et la bonne humeur.",
+    "description2": "Retrouvez Azurios, Louis et Xela régulièrement en live sur les chaînes YouTube et Twitch !",
+    "cta": "Accéder à la chaîne youtube",
+    "loadingLive": "Chargement de la dernière rediffusion...",
+    "liveDate": "Diffusé le {{date, datetime}}",
+    "noLive": "Aucune rediffusion disponible pour le moment",
+    "latestVideos": "Nos dernières vidéos",
+    "loadingVideos": "Chargement des vidéos...",
+    "publishedOn": "Publié le {{date}}",
+    "watchOnYoutube": "Voir sur YouTube",
+    "socialTitle": "Présents sur d'autres réseaux !",
+    "social": {
+      "twitch": {
+        "name": "Twitch",
+        "description": "Retrouvez nous pour des lives avec pleins de bonne humeur !",
+        "linkText": "Lien de la chaîne"
+      },
+      "instagram": {
+        "name": "Instagram",
+        "description": "Retrouvez nous pour avoir toutes nos dernières informations du moment !",
+        "linkText": "Lien du compte"
+      },
+      "discord": {
+        "name": "Discord",
+        "description": "Retrouvez nous sur notre serveur pour poser toutes vos questions et échanger !",
+        "linkText": "Lien du discord"
+      },
+      "youtube": {
+        "name": "Youtube",
+        "description": "Retrouvez nous pour des lives avec pleins de bonne humeur !",
+        "linkText": "Lien de la chaîne"
+      },
+      "tiktok": {
+        "name": "Tiktok",
+        "description": "Retrouvez les meilleurs moments / best of de nos lives !",
+        "linkText": "Lien du compte"
+      }
+    }
+  },
+  "about": {
+    "title": "Notre Équipe",
+    "intro": "La Team SEGAROW, à votre service pour vous régaler au quotidien !",
+    "prevMember": "Membre précédent",
+    "nextMember": "Membre suivant",
+    "gotoMember": "Aller au membre {{number}}",
+    "team": {
+      "louis": {
+        "role": "Créateur de contenu / Streamer",
+        "description": "Traumatisé de Sonic Heroes et des niveaux de Knuckles sur Sonic Adventure 2, Louis est un passionné du hérisson bleu supersonique. Il rêve d’une nouvelle console SEGA et du million d’abonnés (vous savez ce qu’il vous reste à faire)."
+      },
+      "xela": {
+        "role": "Streamer",
+        "description": "Xela est le \"touche à tout\" de notre chaîne Twitch. Minecraft, Rust, casser du bois et construire, tout ça c'est son dada."
+      },
+      "azurios": {
+        "role": "Streamer",
+        "description": "Coach de renommé, Azurios dépasse un nombre d'heure sur Football Manager que vous ne pouvez même pas imaginer. Si vous rêvez de voir un club de district gagner la Ligue des Champions, vous pouvez être sûr qu'il en est le chef d'orchestre."
+      }
+    }
+  },
+  "profile": {
+    "title": "Mon Profil",
+    "subtitle": "Gérez vos informations personnelles",
+    "email": "Email",
+    "role": "Rôle",
+    "admin": "Administrateur",
+    "visitor": "Visiteur",
+    "username": "Pseudonyme",
+    "usernamePlaceholder": "Votre pseudonyme (max 20 caractères)",
+    "passwordChangeInfo": "Laissez vide si vous ne souhaitez pas changer votre mot de passe",
+    "currentPassword": "Mot de passe actuel",
+    "newPassword": "Nouveau mot de passe",
+    "confirmNewPassword": "Confirmer le nouveau mot de passe",
+    "save": "Sauvegarder",
+    "saving": "Sauvegarde...",
+    "dangerZoneInfo": "Ces actions sont irréversibles. Réfléchissez bien avant de continuer.",
+    "deleteAccountBtn": "Supprimer mon compte définitivement",
+    "deleteWillRemove": "Cette action supprimera :",
+    "deleteList": {
+      "profile": "Votre profil utilisateur",
+      "likes": "Tous vos likes sur les contenus",
+      "comments": "Tous les commentaires associés à votre compte",
+      "articles": "Tous les articles/reviews que vous avez créés",
+      "likesOnContent": "Tous les likes sur vos contenus",
+      "adminStatus": "Votre statut d'administrateur",
+      "siteStats": "Votre accès aux indicateurs du site",
+      "addContent": "Votre possibilité d'ajouter du contenu",
+      "deleteContent": "Votre possibilité de supprimer du contenu"
+    },
+    "deleteAdminWarning": "EN TANT QU'ADMINISTRATEUR, vous perdrez TOUS vos privilèges d'administration ! Cette action est IRRÉVERSIBLE !",
+    "deleteIrreversible": "Cette action est IRRÉVERSIBLE !",
+    "deletePasswordLabel": "Votre mot de passe actuel *",
+    "deleteConfirmLabel": "Tapez \"SUPPRIMER MON COMPTE\" pour confirmer *",
+    "cancel": "Annuler",
+    "deleteConfirmBtn": "Supprimer définitivement",
+    "deleting": "Suppression...",
+    "deleteConfirm": {
+      "admin": "DERNIÈRE CONFIRMATION - ADMINISTRATEUR\n\nCette action est IRRÉVERSIBLE !\n\nEN TANT QU'ADMINISTRATEUR, vous perdrez :\n• Votre profil utilisateur\n• Tous vos likes et commentaires\n• Tous vos articles/reviews\n• Tous les likes sur vos contenus\n• VOTRE STATUT D'ADMINISTRATEUR\n• Accès aux indicateurs du site\n• Possibilité d'ajouter du contenu\n• Possibilité de supprimer du contenu\n\nVOUS NE POURREZ PLUS ADMINISTRER LE SITE !\n\nVoulez-vous vraiment continuer ?",
+      "user": "DERNIÈRE CONFIRMATION\n\nCette action est IRRÉVERSIBLE !\n\nVotre compte et TOUTES vos données seront supprimés :\n• Votre profil\n• Tous vos likes et commentaires\n• Tous vos articles/reviews\n• Tous les likes sur vos contenus\n\nVoulez-vous vraiment continuer ?"
+    },
+    "deleteStats": "Données supprimées",
+    "deleteAdminLost": "Statut d'administrateur perdu définitivement",
+    "errors": {
+      "usernameRequired": "Le pseudonyme est requis",
+      "passwordsDontMatch": "Les mots de passe ne correspondent pas",
+      "currentPasswordRequired": "Le mot de passe actuel est requis pour changer le mot de passe",
+      "deletePasswordRequired": "Mot de passe requis pour supprimer le compte",
+      "deleteConfirmText": "Vous devez taper exactement \"SUPPRIMER MON COMPTE\" pour confirmer",
+      "deleteError": "Erreur lors de la suppression du compte",
+      "server": "Erreur de connexion au serveur"
+    },
+    "dangerZoneTitle": "Zone dangereuse",
+    "deleteFinalTitle": "Suppression définitive du compte",
+    "generalInfoTitle": "Informations générales",
+    "passwordChangeTitle": "Changer le mot de passe",
+    "updateSuccess": "Profil mis à jour avec succès !",
+    "passwordChangeSuccess": "Mot de passe modifié avec succès !",
+    "deleteSuccess": "Compte supprimé avec succès !"
+  },
+  "admin": {
+    "accessDenied": "Accès refusé",
+    "title": "Administration SEGAROW",
+    "welcome": "Bienvenue, {{user}}",
+    "tabs": {
+      "articles": "Articles ({{count}})",
+      "reviews": "Reviews ({{count}})",
+      "images": "Images",
+      "likes": "Likes",
+      "users": "Utilisateurs",
+      "logs": "Logs"
+    },
+    "createArticle": "Créer un article",
+    "createReview": "Créer une review",
+    "loading": "Chargement...",
+    "logs": {
+      "title": "Gestion des Logs",
+      "description": "Consultez et téléchargez les fichiers de logs quotidiens du système",
+      "loading": "Chargement des logs...",
+      "loadError": "Erreur lors du chargement des logs",
+      "downloadSuccess": "Log téléchargé avec succès",
+      "downloadError": "Erreur lors du téléchargement",
+
+      "refresh": "Actualiser",
+      "totalLogs": "Logs totaux",
+      "totalSize": "Taille totale",
+      "oldestLog": "Plus ancien log",
+      "newestLog": "Plus récent log",
+      "none": "Aucun",
+      "availableLogs": "Logs disponibles",
+      "noLogs": "Aucun fichier de log disponible",
+      "download": "Télécharger",
+      "info": {
+        "title": "Informations",
+        "rotation": "Les logs sont créés quotidiennement (un fichier par jour)",
+        "retention": "Les logs sont conservés pendant 30 jours puis supprimés automatiquement à 2h du matin",
+        "format": "Format JSON avec horodatage ISO pour faciliter l'analyse"
+      }
+    }
+  },
+  "adminPostForm": {
+    "editArticle": "Modifier l'article",
+    "editReview": "Modifier la review",
+    "createArticle": "Créer un article",
+    "createReview": "Créer une review",
+    "title": "Titre",
+    "slug": "Slug",
+    "gameTitle": "Nom du jeu",
+    "genre": "Genre",
+    "selectGenre": "Sélectionner un genre...",
+    "platform": "Console",
+    "rating": "Note (/10)",
+    "mainImage": "Image principale",
+    "changeMainImage": "Changer l'image principale",
+    "selectMainImage": "Sélectionner l'image principale",
+    "secondaryImage": "Image secondaire",
+    "changeSecondaryImage": "Changer l'image secondaire",
+    "selectSecondaryImage": "Sélectionner l'image secondaire",
+    "optional": "facultatif",
+    "excerpt": "Description / Extrait",
+    "excerptPlaceholder": "Description courte qui s'affichera sur les cartes d'articles...",
+    "readingTime": "Temps de lecture",
+    "readingTimePlaceholder": "Ex: 5 minutes, 10 min, 2-3 minutes...",
+    "content": "Contenu",
+    "contentPlaceholder": "Contenu complet...",
+    "cancel": "Annuler",
+    "save": "Sauvegarder",
+    "saving": "Sauvegarde...",
+    "addImage": "Ajouter une image",
+    "addYoutube": "Ajouter une vidéo YouTube",
+    "insertYoutube": "Insérer la vidéo"
+  },
+  "adminPostList": {
+    "noArticle": "Aucun article pour le moment",
+    "noReview": "Aucune review pour le moment",
+    "createFirstArticle": "Commencez par créer votre premier article !",
+    "createFirstReview": "Commencez par créer votre première review !",
+    "articles": "Articles",
+    "reviews": "Reviews",
+    "pageInfo": "Page {{current}} sur {{total}} • Affichage de {{from}} à {{to}} sur {{totalItems}} {{type}}",
+    "unknownAuthor": "Auteur inconnu",
+    "like": "Like",
+    "likes": "Likes",
+    "updatedOn": "Modifié le {{date}}",
+    "viewArticle": "Voir l'article",
+    "viewReview": "Voir la review",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "viewLikes": "Voir les likes",
+    "deleteConfirm": "Êtes-vous sûr de vouloir supprimer cet élément ?",
+    "articleDeleted": "📰 Article supprimé avec succès",
+    "reviewDeleted": "🎮 Review supprimée avec succès",
+    "deleteError": "Erreur lors de la suppression : {{message}}",
+    "articleUpdated": "📰 Article modifié avec succès",
+    "reviewUpdated": "🎮 Review modifiée avec succès",
+    "articleCreated": "📰 Article créé avec succès",
+    "reviewCreated": "🎮 Review créée avec succès",
+    "saveError": "Erreur lors de la sauvegarde : {{message}}"
+  },
+  "likesManager": {
+    "title": "Statistiques des Likes",
+    "refresh": "Actualiser",
+    "totalLikes": "Total Likes",
+    "articleLikes": "Likes Articles",
+    "reviewLikes": "Likes Reviews",
+    "commentLikes": "Likes Commentaires",
+    "maintenanceTools": "Outils de maintenance",
+    "fixAll": "Réparer tous les problèmes",
+    "fixTitle": "Réparation :",
+    "fixDesc": "Diagnostique, nettoie et synchronise tous les likes",
+    "topArticles": "Top Articles les plus likés",
+    "topReviews": "Top Reviews les plus likées",
+    "topComments": "Top Commentaires les plus likés",
+    "topLikers": "Utilisateurs les plus actifs",
+    "byAuthor": "Par {{author}}",
+    "unknownUser": "Auteur inconnu",
+    "view": "Voir",
+    "loadingStats": "Chargement des statistiques...",
+    "loading": "Chargement...",
+    "statsError": "Erreur lors du chargement des statistiques : {{message}}",
+    "likesError": "Erreur lors du chargement des likes : {{message}}",
+    "fixConfirm": "Voulez-vous lancer la réparation automatique des likes ?\n\nCette opération va :\n• Diagnostiquer les problèmes\n• Nettoyer les likes orphelins et avec contenus supprimés\n• Synchroniser tous les compteurs\n\nContinuer ?",
+    "fixError": "Erreur lors de la réparation automatique : {{message}}",
+    "backToStats": "Retour aux statistiques",
+    "likesFor": "Likes pour : {{title}}",
+    "like": "like",
+    "likes": "likes",
+    "total": "au total",
+    "noLikesForContent": "Aucun like pour ce contenu.",
+    "likedOn": "Aimé le {{date}}",
+    "nothingToFix": "✨ Aucun problème détecté - Tout était déjà en ordre !",
+    "fixedProblems": "✨ {{total}} problèmes corrigés avec succès !",
+    "orphanedLikes": "Likes orphelins (utilisateurs supprimés) : {{total}}",
+    "deletedContentLikes": "Likes avec contenus supprimés : {{total}}",
+    "totalProblematicLikes": "Total likes problématiques : {{total}}",
+    "repairReportStart": "🔧 RAPPORT DE RÉPARATION DES LIKES",
+    "diagnosticStep": "📊 ÉTAPE 1 : DIAGNOSTIC",
+    "realData": "   Données réelles : {{total}} likes au total",
+    "storedCounters": "   Compteurs stockés : {{total}} likes au total",
+    "inconsistencies": "   Incohérences détectées : {{total}}",
+    "cleanupStep": "🧹 ÉTAPE 2 : NETTOYAGE",
+    "cleanedLikes": "   Likes nettoyés : {{cleaned}}",
+    "noOrphanedLikes": "   Aucun like problématique à nettoyer",
+    "syncStep": "🔄 ÉTAPE 3 : SYNCHRONISATION",
+    "fixedCounters": "   Compteurs corrigés : {{total}}",
+    "fixedArticles": "   Articles : {{articles}}",
+    "fixedReviews": "   Reviews : {{reviews}}",
+    "fixedComments": "   Commentaires : {{comments}}",
+    "allCountersSynced": "   Tous les compteurs étaient déjà synchronisés",
+    "repairFinished": "✅ RÉPARATION TERMINÉE"
+  },
+  "userManager": {
+    "title": "Gestion des Utilisateurs",
+    "refresh": "Actualiser",
+    "loading": "Chargement des utilisateurs...",
+    "noUsers": "Aucun utilisateur trouvé.",
+    "deleteUser": "Supprimer cet utilisateur",
+    "deleteConfirm": "DANGER ! Supprimer définitivement {{username}} ({{email}}) ?\n\nCette action supprimera TOUT :\n• Le compte utilisateur\n• Tous ses likes\n• Tous ses articles/reviews\n• Tous les likes sur ses contenus\n\nCette action est IRRÉVERSIBLE !\n\nTapez \"SUPPRIMER\" pour confirmer :",
+    "deleteCancelled": "Suppression annulée",
+    "deleteError": "Erreur lors de la suppression",
+    "cleanupLikes": "Nettoyer Likes",
+    "cleanupConfirm": "Nettoyer les likes orphelins ?\n\nCela supprimera tous les likes d'utilisateurs qui n'existent plus et corrigera les compteurs.\n\nContinuer ?",
+    "cleaning": "Nettoyage...",
+    "cleanupError": "Erreur lors du nettoyage",
+
+    "loadError": "Erreur lors du chargement des utilisateurs",
+    "connectionError": "Erreur de connexion",
+    "userList": "Liste des Utilisateurs ({{count}})",
+    "admin": "Administrateur",
+    "visitor": "Visiteur",
+    "registeredOn": "Inscrit le {{date}}",
+
+    "deleteSuccess": "Utilisateur supprimé avec succès !",
+    "cleanupSuccess": "Likes orphelins nettoyés avec succès !"
+  },
+  "footer": {
+    "usefulInfo": "Infos utiles",
+    "terms": "Conditions générales",
+    "legal": "Mentions légales",
+    "followUs": "Suivez-nous",
+    "copyright": "Copyright©{{year}}"
+  },
+  "imageManager": {
+    "title": "Gestionnaire d'images",
+    "upload": "Ajouter une image",
+    "uploading": "Ajout en cours...",
+    "uploadSuccess": "Image ajoutée avec succès !",
+    "uploadError": "Erreur lors de l'ajout de l'image : {{message}}",
+    "uploadTypeError": "Seuls les fichiers images sont acceptés.",
+    "uploadSizeError": "La taille maximale autorisée est de 2 Mo.",
+    "loadError": "Erreur lors du chargement des images : {{message}}",
+    "loading": "Chargement des images...",
+    "noImages": "Aucune image disponible.",
+    "delete": "Supprimer",
+    "deleteConfirm": "Voulez-vous vraiment supprimer cette image ?",
+    "deleteSuccess": "Image supprimée avec succès !",
+    "deleteError": "Erreur lors de la suppression de l'image.",
+    "select": "Sélectionner",
+    "close": "Fermer"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oups ! Cette page n'existe pas...",
+    "subMessage": "En attendant, amusez-vous avec notre jeu Sonic !",
+    "homeButton": "Retour à l'accueil"
+  },
+  "pagination": {
+    "previous": "« Précédent",
+    "next": "Suivant »"
+  },
+  "singleContent": {
+    "loading": "Chargement : {{type}}...",
+    "notFound": "{{type}} non trouvé",
+    "notFoundDesc": "Ce {{type}} n'existe pas ou a été supprimé.",
+    "backTo": "Retour aux {{type}}s",
+    "noContent": "Aucun contenu disponible.",
+    "writtenOn": "Rédigé le {{date}} par {{author}}",
+    "unknownAuthor": "Auteur inconnu",
+    "genre": "Genre : {{genre}}",
+    "console": "Console :",
+    "likesCount": "{{count}} {{likes}} sur cet {{type}}",
+    "like": "Like",
+    "likes": "Likes",
+    "review": "avis",
+    "article": "article",
+    "loadingLike": "Chargement...",
+    "likeButton": "J'aime",
+    "unlikeButton": "J'aime",
+    "sharing": "Partage...",
+    "share": "Partager",
+    "previousReviews": "Reviews précédentes",
+    "previousArticles": "Articles précédents",
+    "loadingPrevious": "Chargement des contenus précédents...",
+    "noPreviousReviews": "Aucune review précédente disponible",
+    "noPreviousArticles": "Aucun article précédent disponible",
+    "comingSoon": "à venir...",
+    "mustBeLoggedIn": "Vous devez être connecté pour liker du contenu",
+    "likeError": "Erreur lors du like. Veuillez réessayer.",
+    "shareDescription": "Découvrez cet {{type}} sur SEGAROW : {{title}}",
+    "shareError": "Erreur inattendue lors du partage.",
+    "liked": "❤️ Contenu liké !",
+    "unliked": "💔 Like retiré",
+    "shareSuccess": "📤 Contenu partagé avec succès !",
+    "linkCopied": "📋 Lien copié dans le presse-papiers !",
+    "translating": "🌐 Traduction automatique...",
+    "translationSuccess": "✅ Contenu traduit avec succès !",
+    "translationError": "❌ Erreur lors de la traduction automatique",
+    "retryTranslation": "🔄 Réessayer la traduction"
+  },
+  "comments": {
+    "title": "Commentaires ({{count}})",
+    "sortBy": "Trier par :",
+    "mostRecent": "Plus récents",
+    "mostLiked": "Plus likés",
+    "placeholder": "Écrivez votre commentaire...",
+    "publishing": "Publication...",
+    "publish": "Publier",
+    "loginPrompt": "Connectez-vous pour laisser un commentaire",
+    "loading": "Chargement...",
+    "loadMore": "Charger plus ({{count}} restants)",
+    "none": "Aucun commentaire pour le moment",
+    "emptyComment": "Le commentaire ne peut pas être vide",
+    "addComment" : "Ajouter un commentaire",
+    "added": "💬 Commentaire ajouté avec succès",
+    "addError": "Erreur lors de l'ajout du commentaire",
+    "emptyReply": "La réponse ne peut pas être vide",
+    "replyAdded": "💬 Réponse ajoutée avec succès",
+    "replyAddError": "Erreur lors de l'ajout de la réponse",
+    "deleted": "🗑️ Commentaire supprimé",
+    "deleteError": "Erreur lors de la suppression du commentaire",
+    "forceDeleted": "💀 Commentaire supprimé définitivement",
+    "forceDeleteError": "Erreur lors de la suppression définitive",
+    "likeError": "Erreur lors de la mise à jour du like",
+    "loadError": "Erreur lors du chargement des commentaires"
+  },
+  "inactivity": {
+    "warning": "Session expirera dans 1 minute",
+    "sessionExtended": "Session prolongée !",
+    "continue": "Continuer"
+  },
+  "genres": {
+    "Action": "Action",
+    "Action/Aventure": "Action/Aventure",
+    "Aventure": "Aventure",
+    "Beat'em up": "Beat'em up",
+    "Course": "Course",
+    "Plateforme": "Plateforme",
+    "Puzzle": "Puzzle",
+    "RPG": "RPG",
+    "JRPG": "JRPG",
+    "Simulation": "Simulation",
+    "Sport": "Sport",
+    "Stratégie": "Stratégie",
+    "FPS": "FPS",
+    "TPS": "TPS",
+    "Survival": "Survie",
+    "Horror": "Horreur",
+    "Fighting": "Combat",
+    "Arcade": "Arcade",
+    "Shoot'em up": "Shoot'em up",
+    "Metroidvania": "Metroidvania",
+    "Roguelike": "Roguelike",
+    "Battle Royale": "Battle Royale",
+    "MMORPG": "MMORPG",
+    "MOBA": "MOBA",
+    "RTS": "RTS",
+    "Turn-Based": "Au tour par tour",
+    "Sandbox": "Bac à sable",
+    "Visual Novel": "Visual Novel",
+    "Rhythm": "Rythme",
+    "Party Game": "Party Game"
+  },
+  "legalNotice": {
+    "title": "Mentions Légales",
+    "siteInfo": {
+      "title": "Informations du site",
+      "name": "Nom du site : SEGAROW",
+      "url": "URL : https://segarow.com/"
+    },
+    "publisher": {
+      "title": "Éditeur du site",
+      "description": "Le site est édité par SEGAROW",
+      "responsible": "Responsable de la publication : SEGAROW"
+    },
+    "hosting": {
+      "title": "Hébergement",
+      "description": "Le site est hébergé par :",
+      "company": "Hostinger International Ltd.",
+      "address": "61 Lordou Vironos Street, 6023 Larnaca, Chypre",
+      "website": "Site web : www.hostinger.fr"
+    },
+    "dataProtection": {
+      "title": "Données personnelles & cookies",
+      "description": "Le site Segarow collecte uniquement les données nécessaires au fonctionnement du système d'authentification.",
+      "accountData": "Les données de compte (nom d'utilisateur, email, mot de passe hashé) sont stockées de manière sécurisée et ne sont utilisées que pour l'authentification et les fonctionnalités du site.",
+      "cookies": "Le site utilise des cookies techniques pour maintenir la session utilisateur et améliorer l'expérience de navigation.",
+      "thirdParty": "Aucune donnée n'est transmise à des tiers à des fins commerciales ou publicitaires.",
+      "openSource": "Ce site est un projet open source. Le code source est disponible publiquement sous licence Apache License 2.0 et peut être consulté, modifié et distribué par tous. Retrouvez le dépôt ici :"
+    },
+    "intellectualProperty": {
+      "title": "Propriété intellectuelle",
+      "description": "L'ensemble du contenu du site SEGAROW (textes, images, vidéos, éléments graphiques, etc.) est protégé par le droit de la propriété intellectuelle.",
+      "prohibition": "Toute reproduction ou utilisation sans autorisation est interdite.",
+      "openSource": "Le code source de ce site est disponible sous licence Apache License 2.0 et peut être librement utilisé, modifié et distribué. Cependant, le contenu éditorial (articles, reviews, commentaires) reste la propriété de leurs auteurs respectifs.",
+      "openSourceTitle": "Open Source"
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Pour toute question concernant ces mentions légales, vous pouvez nous contacter à :",
+      "emailLabel": "Email :"
+    }
+  },
+  "privacyPolicy": {
+    "title": "Conditions Générales",
+    "acceptance": {
+      "title": "Acceptation des conditions",
+      "description": "L'utilisation du site SEGAROW implique l'acceptation pleine et entière des présentes conditions générales."
+    },
+    "access": {
+      "title": "Accès au site",
+      "description": "Le site est accessible gratuitement à tout utilisateur disposant d'un accès à Internet."
+    },
+    "userAccounts": {
+      "title": "Comptes utilisateurs",
+      "description": "Le site propose un système d'authentification permettant aux utilisateurs de :",
+      "features": {
+        "1": "Créer un compte personnel",
+        "2": "Publier des commentaires sur les articles et reviews",
+        "3": "Liker du contenu",
+        "4": "Accéder à un espace personnel pour gérer leurs données"
+      }
+    },
+    "modifications": {
+      "title": "Modifications",
+      "description": "SEGAROW se réserve le droit de modifier à tout moment le contenu ou l'accès au site, sans préavis."
+    },
+    "content": {
+      "title": "Contenu et disponibilité",
+      "description": "Le site propose des articles, reviews de jeux vidéo et un système de commentaires.",
+      "accuracy": "Aucune garantie n'est donnée quant à la disponibilité ou l'exactitude du contenu, bien que tout soit mis en œuvre pour assurer un service fiable."
+    },
+    "userConduct": {
+      "title": "Conduite des utilisateurs",
+      "description": "Les utilisateurs s'engagent à :",
+      "rules": {
+        "1": "Respecter les autres utilisateurs et ne pas publier de contenu offensant",
+        "2": "Ne pas utiliser le site à des fins commerciales ou publicitaires",
+        "3": "Ne pas tenter de compromettre la sécurité du site",
+        "4": "Respecter les droits de propriété intellectuelle"
+      }
+    },
+    "liability": {
+      "title": "Responsabilité",
+      "description": "SEGAROW ne peut être tenu responsable des contenus publiés par les utilisateurs. Chaque utilisateur est responsable de ses propres publications."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Pour toute question concernant ces conditions générales, vous pouvez nous contacter à :",
+      "emailLabel": "Email :"
+    }
+  }
+} 

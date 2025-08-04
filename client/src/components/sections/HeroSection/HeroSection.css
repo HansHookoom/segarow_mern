@@ -1,0 +1,164 @@
+/* HeroSection.css */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 5%;
+  margin: 0 auto;
+}
+
+.hero-text {
+  max-width: 100%;
+  /* margin-bottom: 30px; */
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.hero-title {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+
+/* Boutons */
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  align-items: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  width: 80%;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #FF7030;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.7);
+}
+
+/* Images de personnages - cachées sur mobile */
+.hero-characters {
+  display: none;
+}
+
+.hero-characters img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Media queries pour tablettes */
+@media (min-width: 768px) {
+  .hero-buttons {
+    flex-direction: row;
+    justify-content: center;
+    width: auto;
+  }
+  
+  .btn {
+    width: auto;
+  }
+  
+  .hero-title {
+    font-size: 42px;
+    margin-bottom: 35px;
+  }
+  
+  .hero-subtitle {
+    font-size: 17px;
+    margin-bottom: 18px;
+  }
+}
+
+/* Media queries pour desktop */
+@media (min-width: 1024px) {
+  .hero-content {
+    flex-direction: row;
+    text-align: left;
+    justify-content: space-between;
+    padding: 0 5%;
+    align-items: center;
+  }
+  
+  .hero-text {
+    max-width: 600px;
+    margin-bottom: 0;
+  }
+  
+  .hero-buttons {
+    justify-content: flex-start;
+  }
+  
+  .hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 40px;
+  }
+  
+  .hero-subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  
+  /* Afficher les personnages sur desktop */
+  .hero-characters {
+    display: block;
+    position: relative;
+    width: 500px;
+    height: 450px;
+  }
+  
+  .hero-characters img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-left: 10px;
+  }
+}
+
+[data-theme='light'] .btn-secondary {
+  background-color: var(--color-text);
+  color: #fff;
+  border: 1px solid var(--color-text);
+}
+[data-theme='light'] .btn-secondary:hover {
+  background-color: var(--color-link-hover);
+  color: #fff;
+  border: 1px solid var(--color-link-hover);
+}

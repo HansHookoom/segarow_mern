@@ -1,0 +1,219 @@
+/* ======================================== EMOJIS CSS ======================================== */
+/* Fichier centralisé pour tous les émojis utilisés dans l'application */
+
+/* Émojis de chargement et d'état */
+.emoji-loading::before { content: "⏳ "; }
+.emoji-news::before { content: "📰 "; }
+.emoji-error::before { content: "❌ "; }
+.emoji-warning::before { content: "⚠️ "; }
+.emoji-clock::before { content: "⏰ "; }
+
+/* Émojis d'authentification */
+.emoji-key::before { content: "🔑 "; }
+.emoji-sparkle::before { content: "✨ "; }
+
+/* Émojis de rôles utilisateur */
+.emoji-admin::before { content: "🔧 "; }
+.emoji-visitor::before { content: "👤 "; }
+
+/* Émojis d'actions */
+.emoji-save::before { content: "💾 "; }
+.emoji-delete::before { content: "🗑️ "; }
+.emoji-stats::before { content: "📊 "; }
+.emoji-edit::before { content: "✏️ "; }
+.emoji-alert::before { content: "🚨 "; }
+
+/* Émojis de maintenance */
+.emoji-fix::before { content: "🔧 "; }
+.emoji-clean::before { content: "🧹 "; }
+.emoji-promote::before { content: "⬆️ "; }
+.emoji-refresh::before { content: "🔄 "; }
+.emoji-success::before { content: "🎉 "; }
+
+/* Émojis de contenu */
+.emoji-heart::before { content: "❤️ "; }
+.emoji-heart-outline::before { content: "🤍 "; }
+.emoji-game::before { content: "🎮 "; }
+.emoji-link::before { content: "🔗 "; }
+
+/* Émojis de navigation */
+.emoji-arrow-left::before { content: "« "; }
+.emoji-arrow-right::before { content: " »"; }
+
+/* Émojis de section */
+.emoji-articles::before { content: "📰 "; }
+.emoji-reviews::before { content: "🎮 "; }
+.emoji-videos::before { content: "🎥 "; }
+.emoji-about::before { content: "👥 "; }
+.emoji-admin-section::before { content: "🔧 "; }
+
+/* Émojis de danger */
+.emoji-danger::before { content: "⚠️ "; }
+.emoji-danger-zone::before { content: "🚨 "; }
+
+/* Émojis de succès et erreur */
+.emoji-success-check::before { content: "✅ "; }
+.emoji-error-cross::before { content: "❌ "; }
+
+/* Émojis de temps */
+.emoji-time::before { content: "⏰ "; }
+.emoji-duration::before { content: "⏱️ "; }
+
+/* Émojis de partage */
+.emoji-share::before { content: "🔗 "; }
+.emoji-copy::before { content: "📋 "; }
+
+/* Émojis de notification */
+.emoji-notification::before { content: "🔔 "; }
+.emoji-info::before { content: "ℹ️ "; }
+
+/* Émojis de navigation */
+.emoji-home::before { content: "🏠 "; }
+.emoji-back::before { content: "← "; }
+.emoji-forward::before { content: "→ "; }
+
+/* Émojis de menu et navigation */
+.emoji-logout::before { content: "🚪 "; }
+.emoji-welcome::before { content: "👋 "; }
+.emoji-dropdown::before { content: "▼ "; }
+
+/* Émojis de statut */
+.emoji-online::before { content: "🟢 "; }
+.emoji-offline::before { content: "🔴 "; }
+.emoji-busy::before { content: "🟡 "; }
+
+/* Émojis de contenu spécifique */
+.emoji-sonic::before { content: "🦔 "; }
+.emoji-sega::before { content: "🎮 "; }
+.emoji-gaming::before { content: "🎯 "; }
+
+/* Émojis de feedback */
+.emoji-thumbs-up::before { content: "👍 "; }
+.emoji-thumbs-down::before { content: "👎 "; }
+.emoji-star::before { content: "⭐ "; }
+
+/* Émojis de communication */
+.emoji-comment::before { content: "💬 "; }
+.emoji-message::before { content: "📝 "; }
+.emoji-email::before { content: "📧 "; }
+
+/* Émojis de sécurité */
+.emoji-lock::before { content: "🔒 "; }
+.emoji-unlock::before { content: "🔓 "; }
+.emoji-shield::before { content: "🛡️ "; }
+
+/* Émojis de configuration */
+.emoji-settings::before { content: "⚙️ "; }
+.emoji-gear::before { content: "🔧 "; }
+.emoji-tools::before { content: "🛠️ "; }
+
+/* Émojis de données */
+.emoji-database::before { content: "🗄️ "; }
+.emoji-chart::before { content: "📊 "; }
+.emoji-analytics::before { content: "📈 "; }
+
+/* Émojis de médias */
+.emoji-image::before { content: "🖼️ "; }
+.emoji-video::before { content: "🎬 "; }
+.emoji-audio::before { content: "🎵 "; }
+
+/* Émojis de navigation de page */
+.emoji-first::before { content: "⏮️ "; }
+.emoji-last::before { content: "⏭️ "; }
+.emoji-prev::before { content: "◀️ "; }
+.emoji-next::before { content: "▶️ "; }
+
+/* Émojis de statut de contenu */
+.emoji-draft::before { content: "📄 "; }
+.emoji-published::before { content: "✅ "; }
+.emoji-archived::before { content: "📦 "; }
+.emoji-featured::before { content: "⭐ "; }
+
+/* Émojis de catégories */
+.emoji-news-category::before { content: "📰 "; }
+.emoji-review-category::before { content: "🎮 "; }
+.emoji-video-category::before { content: "🎥 "; }
+.emoji-tutorial-category::before { content: "📚 "; }
+
+/* Émojis de plateformes */
+.emoji-console::before { content: "🎮 "; }
+.emoji-pc::before { content: "💻 "; }
+.emoji-mobile::before { content: "📱 "; }
+
+/* Émojis de réseaux sociaux */
+.emoji-youtube::before { content: "📺 "; }
+.emoji-twitch::before { content: "🎥 "; }
+.emoji-discord::before { content: "💬 "; }
+.emoji-instagram::before { content: "📸 "; }
+.emoji-tiktok::before { content: "🎵 "; }
+
+/* Émojis de météo/thème */
+.emoji-sun::before { content: "☀️ "; }
+.emoji-moon::before { content: "🌙 "; }
+.emoji-theme::before { content: "🎨 "; }
+
+/* Émojis de langue */
+.emoji-language::before { content: "🌐 "; }
+.emoji-french::before { content: "🇫🇷 "; }
+.emoji-english::before { content: "🇬🇧 "; }
+
+/* Émojis de validation */
+.emoji-check::before { content: "✅ "; }
+.emoji-cross::before { content: "❌ "; }
+.emoji-question::before { content: "❓ "; }
+.emoji-exclamation::before { content: "❗ "; }
+
+/* Émojis de progression */
+.emoji-progress::before { content: "📊 "; }
+.emoji-loading-dots::before { content: "⏳ "; }
+.emoji-complete::before { content: "🎯 "; }
+
+/* Émojis de recherche */
+.emoji-search::before { content: "🔍 "; }
+.emoji-filter::before { content: "🔧 "; }
+.emoji-sort::before { content: "📊 "; }
+
+/* Émojis de téléchargement */
+.emoji-download::before { content: "⬇️ "; }
+.emoji-upload::before { content: "⬆️ "; }
+.emoji-export::before { content: "📤 "; }
+.emoji-import::before { content: "📥 "; }
+
+/* Émojis de calendrier */
+.emoji-calendar::before { content: "📅 "; }
+.emoji-date::before { content: "📆 "; }
+.emoji-time-ago::before { content: "⏰ "; }
+
+/* Émojis de notification de type */
+.emoji-info-notification::before { content: "ℹ️ "; }
+.emoji-success-notification::before { content: "✅ "; }
+.emoji-warning-notification::before { content: "⚠️ "; }
+.emoji-error-notification::before { content: "❌ "; }
+
+/* ======================================== STYLES SPÉCIAUX ======================================== */
+/* Styles pour les émojis avec positionnement spécial */
+
+/* Émojis sans espace après (pour certains cas spécifiques) */
+.emoji-heart-no-space::before { content: "❤️"; }
+.emoji-heart-outline-no-space::before { content: "🤍"; }
+.emoji-error-no-space::before { content: "❌"; }
+.emoji-warning-no-space::before { content: "⚠️"; }
+
+/* Émojis avec espace avant (pour certains cas) */
+.emoji-arrow-left-space-before::before { content: " «"; }
+.emoji-arrow-right-space-before::before { content: " »"; }
+
+/* Émojis pour les boutons (sans espace) */
+.emoji-button::before { content: ""; }
+.emoji-button.emoji-heart::before { content: "❤️"; }
+.emoji-button.emoji-heart-outline::before { content: "🤍"; }
+.emoji-button.emoji-key::before { content: "🔑"; }
+.emoji-button.emoji-sparkle::before { content: "✨"; }
+.emoji-button.emoji-save::before { content: "💾"; }
+.emoji-button.emoji-delete::before { content: "🗑️"; }
+.emoji-button.emoji-settings::before { content: "⚙️"; }
+.emoji-button.emoji-logout::before { content: "🚪"; }
+.emoji-button.emoji-welcome::before { content: "👋"; }
+.emoji-button.emoji-admin::before { content: "🔧"; }
+.emoji-button.emoji-visitor::before { content: "👤"; }
+.emoji-button.emoji-plane::before { content: "✈️"; } 

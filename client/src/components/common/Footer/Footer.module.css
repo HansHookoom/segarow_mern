@@ -1,0 +1,246 @@
+/* Style du footer - Mobile first */
+.footer {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  padding: 40px 5%;
+  position: relative;
+  overflow: hidden;
+}
+
+.geometricPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* L'image de fond est maintenant gérée via l'import React */
+  background-color: rgba(255, 255, 255, 0.02);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  z-index: 0;
+  display: none; /* Caché sur mobile */
+}
+
+/* Border top du footer */
+.footerBorder {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Container mobile-first */
+.footerContainer {
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 30px;
+}
+
+/* Section À propos - Mobile */
+.footerAbout {
+  flex: 1;
+  align-items: center;
+}
+
+.aboutTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Liens du footer - Mobile */
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.footerLinks a {
+  color: var(--color-link);
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.footerLinks a:hover {
+  color: var(--color-link-hover);
+}
+
+/* Logo central */
+.footerLogo {
+  flex: 1;
+  text-align: center;
+}
+
+.logoImg {
+  max-width: 200px;
+  height: auto;
+}
+
+/* Section Suivez-nous - Mobile */
+.footerFollow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.followTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Icônes réseaux sociaux */
+.footerSocial {
+  display: flex;
+  gap: 10px;
+}
+
+.socialIconContainer {
+  width: 40px;
+  height: 40px;
+  border: 1px solid white;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.socialIcon {
+  width: 20px;
+  height: 20px;
+  fill: var(--color-text);
+  transition: fill 0.3s ease;
+}
+
+/* États de hover pour chaque réseau social */
+.youtube:hover {
+  background-color: white;
+}
+.youtube:hover .socialIcon {
+  fill: #FF0000;
+}
+
+.twitch:hover {
+  background-color: white;
+}
+.twitch:hover .socialIcon {
+  fill: #9146FF;
+}
+
+.tiktok:hover {
+  background-color: white;
+}
+.tiktok:hover .socialIcon {
+  fill: #000000;
+}
+
+.instagram:hover {
+  background-color: white;
+}
+.instagram:hover .socialIcon {
+  fill: #E1306C;
+}
+
+.discord:hover {
+  background-color: white;
+}
+.discord:hover .socialIcon {
+  fill: #5865F2;
+}
+
+/* Copyright */
+.footerCopyright {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 16px;
+}
+
+/* Desktop layout - 769px+ */
+@media (min-width: 769px) {
+  .geometricPattern {
+    display: block; /* Afficher le pattern géométrique sur desktop */
+  }
+
+  .footerContainer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    gap: 0;
+  }
+
+  .footerAbout {
+    align-items: flex-start;
+  }
+
+  .footerLinks {
+    align-items: flex-start;
+  }
+
+  .footerFollow {
+    align-items: flex-end;
+  }
+}
+
+[data-theme='light'] .footer {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+[data-theme='light'] .footerBorder {
+  background-color: var(--color-text);
+}
+[data-theme='light'] .footerLinks a {
+  color: var(--color-link);
+}
+[data-theme='light'] .footerLinks a:hover {
+  color: var(--color-link-hover);
+}
+
+[data-theme='light'] .socialIconContainer {
+  border: 1px solid var(--color-text);
+}
+
+[data-theme='light'] .socialIconContainer:hover {
+  background-color: var(--color-text);
+}
+[data-theme='light'] .socialIconContainer:hover .socialIcon {
+  fill: #fff;
+}
+[data-theme='light'] .socialIcon {
+  fill: var(--color-text);
+}
+[data-theme='light'] .youtube:hover .socialIcon {
+  fill: #FF0000;
+}
+[data-theme='light'] .twitch:hover .socialIcon {
+  fill: #9146FF;
+}
+[data-theme='light'] .tiktok:hover .socialIcon {
+  fill: #000;
+}
+[data-theme='light'] .instagram:hover .socialIcon {
+  fill: #E1306C;
+}
+[data-theme='light'] .discord:hover .socialIcon {
+  fill: #5865F2;
+}
+[data-theme='light'] .youtube:hover .socialIcon,
+[data-theme='light'] .twitch:hover .socialIcon,
+[data-theme='light'] .tiktok:hover .socialIcon,
+[data-theme='light'] .instagram:hover .socialIcon,
+[data-theme='light'] .discord:hover .socialIcon {
+  fill: #fff;
+}

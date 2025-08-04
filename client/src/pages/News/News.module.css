@@ -1,0 +1,372 @@
+/* ======================================== NEWS PAGE (Style WordPress exact) ======================================== */
+/* Base styles (mobile first) */
+.newsContainer {
+  margin: 0 auto 5%;
+  padding: 0 5%;
+}
+
+.newsContainer h2 {
+  color: var(--color-text);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+/* États de chargement et d'erreur */
+.loadingState,
+.errorState,
+.noArticles {
+  text-align: center;
+  padding: 40px 20px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Résultats de recherche */
+.searchResults {
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: rgba(232, 144, 78, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(232, 144, 78, 0.3);
+}
+
+.searchResults p {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.retryButton {
+  background: #e8904e;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 15px;
+  transition: background 0.3s ease;
+}
+
+.retryButton:hover {
+  background: #d68040;
+}
+
+/* Diviseur entre les articles */
+.newsDivider {
+  height: 1px;
+  background-color: var(--color-text);
+  margin: 1.5rem 0;
+}
+
+/* Styles des cartes d'articles */
+.singleCard {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 0;
+}
+
+.singleCardLink {
+  display: block;
+  text-decoration: none;
+  position: relative;
+}
+
+.singleCardImg {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  background: #333;
+  height: 200px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Style pour mobile (jusqu'à 767px) */
+.singleCardOverlay {
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  color: white;
+  opacity: 1;
+  visibility: visible;
+  transition: background 0.3s, opacity 0.3s;
+  z-index: 2;
+}
+
+.singleCardCover {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 80px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 10%;
+  /* z-index: 1; */
+  margin: 0;
+  visibility: hidden;
+}
+
+/* En mobile, on n'utilise pas de conteneur pour les éléments */
+.singleCardContent {
+  margin-top: 0;
+}
+
+.singleCardTitle {
+  font-size: 18px;
+  margin-bottom: 15px;
+  line-height: 1.3;
+  font-weight: bold;
+  color: white;
+}
+
+.singleCardDescription {
+  display: none;
+}
+
+.singleKnowMoreButton {
+  padding: 8px 20px;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.singleKnowMoreButton:hover {
+  background-color: white;
+  color: #171924;
+}
+
+/* Meta informations */
+.singleCardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 15px 0 0 0;
+  margin: 0;
+}
+
+.singleCardDate {
+  font-size: 12px;
+}
+
+.singleCardDuration {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.singleCardClock {
+  font-size: 14px;
+  color: white;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.paginationLink {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  min-width: 44px;
+  text-align: center;
+}
+
+.paginationLink:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.paginationLink.current {
+  background: #e8904e;
+  border-color: #e8904e;
+  color: white;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .newsContainer h2 {
+    font-size: 2.5rem;
+  }
+
+  .newsDivider {
+    margin: 2.5rem 0;
+  }
+
+  .singleCardImg {
+    height: 250px;
+  }
+
+  .singleCardOverlay {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    height: auto;
+    min-height: 150px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  }
+
+  .singleCardCover {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 110px;
+    height: 150px;
+    margin-right: 20px;
+    visibility: visible;
+    border-radius: 8px;
+  }
+
+  .singleCardContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 150px;
+  }
+
+  .singleCardTitle {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .singleCardDescription {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .singleKnowMoreButton {
+    width: 150px;
+    margin-bottom: 0;
+  }
+
+  .singleCardMeta {
+    margin-top: auto;
+    font-size: 12px;
+  }
+}
+
+/* Large devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+
+  .newsContainer h2 {
+    margin-bottom: 40px;
+  }
+
+  .singleCardImg {
+    height: 400px;
+    transition: opacity 0.3s ease;
+  }
+
+  .singleCard:hover .singleCardImg {
+    opacity: 0.7;
+  }
+
+  .singleCardOverlay {
+    padding: 30px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  }
+
+  .singleCardCover {
+    width: 130px;
+    height: 180px;
+  }
+
+  .singleCardContent {
+    min-height: 180px;
+  }
+
+  .singleCardTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .singleCardDescription {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 20px 0;
+  }
+
+  .singleKnowMoreButton {
+    padding: 10px 25px;
+    font-size: 16px;
+    width: 150px;
+  }
+
+  .singleCardMeta {
+    margin-top: auto;
+  }
+
+  .singleCardDate {
+    font-size: 14px;
+  }
+
+  .singleCardDuration {
+    font-size: 14px;
+  }
+
+  .singleCardClock {
+    font-size: 16px;
+  }
+
+  .pagination {
+    margin-top: 60px;
+  }
+
+  .paginationLink {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+}
+
+body[data-theme='light'] .newsContainer, body[data-theme='light'] .newsContainer * {
+  color: #000 !important;
+}
+
+/* Remplacement global */
+:root .newsContainer, .newsTitle, .newsExcerpt, .newsContent {
+  color: var(--color-text);
+}
+
+/* Correction des titres */
+.News_main_XXXXX h2, .News_main_XXXXX h1, .News_main_XXXXX h3, .News_main_XXXXX h4 {
+  color: var(--color-text);
+} 
