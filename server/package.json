@@ -8,10 +8,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "cleanup": "node scripts/cleanupInactiveAccounts.js",
-    "test:cleanup": "node scripts/testCleanup.js",
-    "security:audit": "node scripts/securityAudit.js",
-    "test:images": "node scripts/testImages.js",
-    "test:routes": "node scripts/testImageRoutes.js"
+    "security:audit": "node scripts/securityAudit.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
