@@ -63,7 +63,7 @@ self.addEventListener('activate', (event) => {
 });
 
 // Configuration du serveur Node.js
-const NODE_SERVER_URL = 'http://localhost:5000'; // Ajustez selon votre configuration
+const NODE_SERVER_URL = self.location.origin;
 
 // Interception des requêtes réseau
 self.addEventListener('fetch', (event) => {
@@ -126,30 +126,19 @@ self.addEventListener('fetch', (event) => {
           
           // Vérifier d'abord la connexion internet
           return navigator.onLine ? 
-            // Si en ligne, vérifier les serveurs
-            Promise.all([
-              fetch(`${NODE_SERVER_URL}/api/health`, {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' }
-              }).then(response => response.ok).catch(() => false),
-              
-              fetch(request, { 
-                cache: hasTimestamp ? 'no-cache' : 'default',
-                headers: hasTimestamp ? { 'Cache-Control': 'no-cache' } : {}
-              }).then(response => response.ok).catch(() => false)
-            ]).then(([nodeOk, reactOk]) => {
-              if (nodeOk && reactOk) {
-                // Les deux serveurs sont OK, retourner la page React
-                return fetch(request, { 
-                  cache: hasTimestamp ? 'no-cache' : 'default',
-                  headers: hasTimestamp ? { 'Cache-Control': 'no-cache' } : {}
-                });
+            // Si en ligne, essayer directement la requête React
+            fetch(request, { 
+              cache: hasTimestamp ? 'no-cache' : 'default',
+              headers: hasTimestamp ? { 'Cache-Control': 'no-cache' } : {}
+            }).then(response => {
+              if (response.ok) {
+                return response;
               } else {
-                // Au moins un serveur est down, retourner offline.html
+                // Si la requête React échoue, retourner offline.html
                 return caches.match(OFFLINE_URL);
               }
             }).catch(() => {
-              // Erreur lors de la vérification, retourner offline.html
+              // Erreur lors de la requête, retourner offline.html
               return caches.match(OFFLINE_URL);
             }) :
             // Si hors ligne, retourner directement offline.html

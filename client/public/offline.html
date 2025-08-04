@@ -486,7 +486,8 @@
         }
         
         // Configuration des serveurs
-        const NODE_SERVER_URL = 'http://localhost:5000'; // Serveur Node.js
+        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const NODE_SERVER_URL = isDevelopment ? 'http://localhost:5000' : window.location.origin; // Serveur Node.js
         const REACT_SERVER_URL = window.location.origin; // Serveur React (même origine)
         const SERVER_CHECK_INTERVAL = 10000; // Vérification toutes les 10 secondes
         

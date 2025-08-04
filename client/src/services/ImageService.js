@@ -92,12 +92,12 @@ class ImageService {
     
     // Si c'est une URL relative (commence par /api/images/)
     if (imageId.startsWith('/api/images/')) {
-      const baseUrl = ApiService.API_BASE_URL || 'http://localhost:5000';
+      const baseUrl = ApiService.API_BASE_URL;
       return `${baseUrl}${imageId}`;
     }
     
     // Si c'est juste un ID, construire l'URL complète
-    const baseUrl = ApiService.API_BASE_URL || 'http://localhost:5000';
+    const baseUrl = ApiService.API_BASE_URL;
     return `${baseUrl}/api/images/${imageId}`;
   }
 
@@ -113,12 +113,12 @@ class ImageService {
     }
     // Si c'est une URL relative (commence par /api/images/)
     else if (imageId.startsWith('/api/images/')) {
-      const baseUrl = ApiService.API_BASE_URL || 'http://localhost:5000';
+      const baseUrl = ApiService.API_BASE_URL;
       imageUrl = `${baseUrl}${imageId}`;
     }
     // Si c'est juste un ID, construire l'URL complète
     else {
-      const baseUrl = ApiService.API_BASE_URL || 'http://localhost:5000';
+      const baseUrl = ApiService.API_BASE_URL;
       imageUrl = `${baseUrl}/api/images/${imageId}`;
     }
     

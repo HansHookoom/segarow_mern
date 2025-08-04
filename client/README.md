@@ -55,3 +55,8 @@ npm start react
 - `src/locales/` : Fichiers de traduction
 
 ---
+
+### IMPORTANT
+
+- En développement dans le fichier /client/public/index.html
+---> mettre la bonne URL dans le header du CSP en fonction de l'environnement 

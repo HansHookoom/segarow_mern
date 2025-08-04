@@ -23,7 +23,7 @@ const useServerStatus = () => {
     // Vérifier le serveur Node.js
     let nodeOk = false;
     try {
-      const nodeResponse = await fetch('http://localhost:5000/api/health', {
+      const nodeResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/health`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         signal: AbortSignal.timeout(5000)

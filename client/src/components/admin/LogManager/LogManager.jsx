@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
+import ApiService from '../../../services/ApiService.js';
 import styles from './LogManager.module.css';
 
 const LogManager = () => {
@@ -27,37 +28,13 @@ const LogManager = () => {
       if (selectedLevel) params.append('level', selectedLevel);
       if (selectedActionType) params.append('actionType', selectedActionType);
 
-      const token = localStorage.getItem('segarow_token');
-
-      if (!token) {
-        throw new Error('Aucun token d\'authentification trouvé. Veuillez vous reconnecter.');
-      }
-
-      const response = await fetch(`/api/admin/logs?${params}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        
-        if (response.status === 401) {
-          throw new Error('Token invalide ou expiré. Veuillez vous reconnecter.');
-        } else if (response.status === 403) {
-          throw new Error('Accès refusé. Droits administrateur requis.');
-        } else {
-          throw new Error(`Erreur ${response.status}: ${errorText}`);
-        }
-      }
-
-      const data = await response.json();
+      const data = await ApiService.get(`/api/admin/logs?${params}`, true);
       
       setLogs(data.logs || []);
       setStats(data.stats || {});
       setAvailableDates(data.availableDates || []);
     } catch (error) {
+      console.error('Erreur lors du chargement des logs:', error);
       toast.error(error.message || t('admin.logs.loadError'));
     } finally {
       setLoading(false);
@@ -75,9 +52,9 @@ const LogManager = () => {
       const params = new URLSearchParams({ format });
       if (date) params.append('date', date);
 
-      const response = await fetch(`/api/admin/logs/download?${params}`, {
+      const response = await fetch(`${ApiService.API_BASE_URL}/api/admin/logs/download?${params}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('segarow_token')}`
+          'Authorization': `Bearer ${ApiService.getAuthToken()}`
         }
       });
 
@@ -98,6 +75,7 @@ const LogManager = () => {
 
       toast.success(t('admin.logs.downloadSuccess'));
     } catch (error) {
+      console.error('Erreur lors du téléchargement:', error);
       toast.error(t('admin.logs.downloadError'));
     } finally {
       setDownloading(false);

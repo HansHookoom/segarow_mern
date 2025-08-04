@@ -15,19 +15,44 @@
       default-src 'self';
       script-src 'self' 'unsafe-inline' https://*.youtube.com https://*.ytimg.com http://*.youtube.com;
       style-src 'self' 'unsafe-inline';
-      img-src 'self' data: https: http://localhost:5000;
-      connect-src 'self' https: http://localhost:5000 http://127.0.0.1:5000 https://api.rss2json.com;
+      img-src 'self' data: https: http://localhost:5000 http://127.0.0.1:5000;
+      connect-src 'self' https: https://api.rss2json.com http://localhost:5000 http://127.0.0.1:5000 https://api.rss2json.com;
       font-src 'self';
       object-src 'none';
       media-src 'self';
       frame-src 'self' https://*.youtube.com https://*.youtu.be;
       child-src 'self' https://*.youtube.com https://*.youtu.be;
     ">
+
+    <!-- img-src 'self' data: https: http://localhost:5000;
+      connect-src 'self' https: http://localhost:5000 http://127.0.0.1:5000 https://api.rss2json.com; -->
     
     <title>SEGAROW</title>
     <link rel="icon" type="image/png" href="assets/img/favicon_blanc.png" media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/png" href="assets/img/favicon_noir.png" media="(prefers-color-scheme: light)">
     <!-- <link rel="icon" type="image/png" href="assets/img/favicon_blanc.png"> -->
+    
+    <!-- <script>
+      // Configuration CSP dynamique selon l'environnement
+      (function() {
+        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const cspMeta = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+        
+        if (isDevelopment && cspMeta) {
+          // En développement, autoriser localhost
+          let cspContent = cspMeta.getAttribute('content');
+          cspContent = cspContent.replace(
+            'connect-src \'self\' https: https://api.rss2json.com;',
+            'connect-src \'self\' https: https://api.rss2json.com http://localhost:5000 http://127.0.0.1:5000;'
+          );
+          cspContent = cspContent.replace(
+            'img-src \'self\' data: https:;',
+            'img-src \'self\' data: https: http://localhost:5000 http://127.0.0.1:5000;'
+          );
+          cspMeta.setAttribute('content', cspContent);
+        }
+      })();
+    </script> -->
   </head>
   <body>
     <div id="root"></div>

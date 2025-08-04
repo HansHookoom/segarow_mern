@@ -13,7 +13,7 @@ export const generateCSP = () => {
   const connectSources = ["'self'", "https:"];
   
   // En développement, autoriser localhost
-  if (isDevelopment) {
+  if (isDevelopment && typeof window !== 'undefined') {
     connectSources.push("http://localhost:5000", "http://127.0.0.1:5000");
   }
   
@@ -24,7 +24,7 @@ export const generateCSP = () => {
   
   // Sources d'images autorisées
   const imgSources = ["'self'", "data:", "https:"];
-  if (isDevelopment) {
+  if (isDevelopment && typeof window !== 'undefined') {
     imgSources.push("http://localhost:5000", "http://127.0.0.1:5000");
   }
   if (apiUrl) {

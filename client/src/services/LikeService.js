@@ -9,7 +9,7 @@ const getApiBaseUrl = () => {
     return window.location.origin;
   }
   // En développement, utiliser l'URL par défaut
-  return 'http://localhost:5000';
+  // return 'http://localhost:5000';
 };
 
 const API_URL = getApiBaseUrl();
