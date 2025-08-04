@@ -23,48 +23,7 @@ SEGAROW est un site web moderne dédié au gaming, développé avec la stack MER
 - Envoi d'emails avec Nodemailer
 - Scripts de maintenance et sécurité
 
-## 📦 Installation
 
-### Prérequis
-- Node.js (version 16 ou supérieure)
-- MongoDB
-- npm
-
-### 1. Cloner le repository
-```bash
-git clone [URL_DU_REPO]
-cd segarow_mern
-```
-
-### 2. Installation des dépendances
-
-#### Backend
-```bash
-cd server
-npm install
-```
-
-#### Frontend
-```bash
-cd client
-npm install
-```
-
-### 3. Lancement
-
-#### Backend
-```bash
-cd server
-npm run dev
-```
-Le serveur sera accessible sur `http://localhost:5000`
-
-#### Frontend
-```bash
-cd client
-npm start
-```
-L'application sera accessible sur `http://localhost:3000`
 
 ## 🏗️ Structure du projet
 
@@ -175,8 +134,6 @@ segarow_mern/
 - `npm run dev` : Lance le serveur en mode développement avec nodemon
 - `npm run cleanup` : Nettoie les comptes inactifs
 - `npm run security:audit` : Audit de sécurité
-- `npm run test:images` : Tests des routes d'images
-- `npm run test:routes` : Tests des routes
 
 ### Frontend
 - `npm start` : Lance l'application React
@@ -217,9 +174,9 @@ segarow_mern/
 - `POST /api/translate` - Service de traduction
 
 ## 📝 Auteur
-**Hookoom Hans** - Étudiant Ynov Campus
+**Hookoom Hans** - Étudiant à EPITA
 
 ## 📄 Licence
-Ce projet est développé dans le cadre d'études à Ynov Campus.
+Ce projet est développé pour la communauté SEGAROW.
 
 ---
