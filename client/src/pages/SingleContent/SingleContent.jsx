@@ -361,7 +361,7 @@ const SingleContent = () => {
         'allow', 'allowfullscreen', 'frameborder', 'scrolling', 'src', 'width', 'height',
         'alt', 'title', 'style', 'class', 'loading'
       ],
-      ALLOWED_URI_REGEXP: /^(https?:)?\/\/(www\.)?(youtube\.com|youtu\.be|localhost|127\.0\.0\.1|api\/images\/)/
+      ALLOWED_URI_REGEXP: /^(https?:)?\/\/(www\.)?(youtube\.com|youtu\.be|localhost|127\.0\.0\.1|segarow\.com|api\/images\/)/
     });
 
     return (
